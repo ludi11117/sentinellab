@@ -1,0 +1,21 @@
+{
+  "measured": true,
+  "timestamp": "2026-10-13T02:25:39.505635+00:00",
+  "host": "http://127.0.0.1:8001",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python": "3.13.15",
+  "database": "SQLite (isolated local benchmark database)",
+  "requests": 200,
+  "concurrency": 4,
+  "events_per_request": 3,
+  "elapsed_seconds": 3.027922100000069,
+  "requests_per_second": 66.05189743817895,
+  "accepted_events": 600,
+  "http_errors": 0,
+  "http_latency_ms": {
+    "p50": 36.53959999974177,
+    "p95": 208.87259999835806,
+    "max": 1222.725100000389
+  },
+  "limitations": "Single host, small HTTP batch, SQLite, no model inference. No production throughput or distributed reliability claim."
+}

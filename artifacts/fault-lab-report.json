@@ -1,0 +1,15 @@
+{
+  "real_process_fault": true,
+  "mocked": false,
+  "database": "D:\\CodexWork\\temp\\sentinellab-fault-4adfc2d12384406a96f05c92f0fd9425\\queue.db",
+  "killed_after_checkpoints": 5,
+  "total_cases": 36,
+  "recovered_cases": 31,
+  "final_trace_count": 36,
+  "final_experiment_count": 1,
+  "attempts": 2,
+  "stale_publication_rejected": true,
+  "recovery_seconds_after_expiry": 1.1270471000007092,
+  "two_process_claim_attempts": 1,
+  "limitations": "Single host SQLite; real process interruption after checkpoint, not machine power failure or a multi-host distributed test."
+}

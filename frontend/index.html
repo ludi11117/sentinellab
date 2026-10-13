@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script src="/auth.js"></script>
+<title>SentinelLab · 链路追踪</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --panel: #161b22;
+    --border: #21262d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --accent: #2f81f7;
+    --green: #3fb950;
+    --red: #f85149;
+    --yellow: #d29922;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+    font-size: 13px;
+  }
+  header {
+    padding: 16px 24px; border-bottom: 1px solid var(--border);
+    display: flex; align-items: baseline; gap: 12px;
+  }
+  header h1 { font-size: 16px; margin: 0; }
+  header span { color: var(--muted); font-size: 12px; }
+  .metrics { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; padding: 16px 24px; }
+  .card { background: var(--panel); border: 1px solid var(--border); border-radius: 8px; padding: 14px; }
+  .card .label { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .04em; }
+  .card .value { font-size: 22px; font-weight: 600; margin-top: 6px; }
+  main { padding: 0 24px 40px; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); }
+  th { color: var(--muted); font-weight: 500; font-size: 11px; text-transform: uppercase; }
+  tbody tr { cursor: pointer; }
+  tbody tr:hover { background: #1c2230; }
+  .badge { display: inline-block; padding: 1px 7px; border-radius: 10px; font-size: 11px; }
+  .badge.success { background: rgba(63,185,80,.15); color: var(--green); }
+  .badge.error { background: rgba(248,81,73,.15); color: var(--red); }
+  .badge.running { background: rgba(210,153,34,.15); color: var(--yellow); }
+  .badge.type { background: rgba(47,129,247,.15); color: var(--accent); }
+  .mono { font-family: "SFMono-Regular", Consolas, monospace; }
+  .section-title { margin: 20px 0 10px; font-size: 14px; }
+  #detail { margin-top: 20px; }
+  .wf-row { display: grid; grid-template-columns: 260px 1fr 90px; gap: 10px; align-items: center; padding: 4px 0; }
+  .wf-name { display: flex; align-items: center; gap: 6px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .wf-track { position: relative; height: 20px; background: #10151d; border-radius: 4px; }
+  .wf-bar { position: absolute; top: 3px; height: 14px; border-radius: 3px; background: var(--accent); opacity: .85; }
+  .wf-bar.error { background: var(--red); }
+  .wf-bar.generation { background: #a371f7; }
+  .wf-bar.tool { background: var(--green); }
+  .wf-latency { color: var(--muted); text-align: right; font-family: monospace; }
+  .empty { color: var(--muted); padding: 40px; text-align: center; }
+  .kv { color: var(--muted); font-size: 12px; margin: 6px 0; }
+  pre { background: #10151d; border: 1px solid var(--border); border-radius: 6px; padding: 10px; overflow: auto; max-height: 220px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>SentinelLab</h1>
+  <span>Agent 可观测性平台 · 全链路 Trace 开盒</span>
+  <a href="/releases.html" style="color:var(--green)">发布门禁 ↗</a>
+  <a href="/delivery.html" style="color:var(--green)">交付验证台 ↗</a>
+  <span style="margin-left:auto"><button onclick="refresh()" style="background:var(--panel);color:var(--text);border:1px solid var(--border);border-radius:6px;padding:4px 12px;cursor:pointer">刷新</button></span>
+</header>
+
+<div class="metrics" id="metrics"></div>
+
+<main>
+  <div class="section-title">Traces</div>
+  <table>
+    <thead>
+      <tr><th>名称</th><th>用户</th><th>状态</th><th>耗时</th><th>Tokens</th><th>成本($)</th><th>时间</th></tr>
+    </thead>
+    <tbody id="trace-list"></tbody>
+  </table>
+  <div id="detail"></div>
+</main>
+
+<script>
+const API = "";
+
+function fmtMs(ms) {
+  if (ms == null) return "-";
+  return ms < 1000 ? `${ms}ms` : `${(ms / 1000).toFixed(2)}s`;
+}
+function fmtTime(iso) {
+  if (!iso) return "-";
+  return new Date(iso).toLocaleString("zh-CN", { hour12: false });
+}
+function esc(s) {
+  return String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+
+async function loadMetrics() {
+  const m = await fetch(`${API}/api/public/metrics/summary`).then(r => r.json());
+  document.getElementById("metrics").innerHTML = `
+    <div class="card"><div class="label">Traces</div><div class="value">${m.total_traces}</div></div>
+    <div class="card"><div class="label">总成本</div><div class="value">$${m.total_cost.toFixed(4)}</div></div>
+    <div class="card"><div class="label">总 Tokens</div><div class="value">${m.total_tokens.toLocaleString()}</div></div>
+    <div class="card"><div class="label">平均延迟</div><div class="value">${fmtMs(Math.round(m.avg_latency_ms))}</div></div>
+    <div class="card"><div class="label">错误率</div><div class="value">${(m.error_rate * 100).toFixed(1)}%</div></div>`;
+}
+
+async function loadTraces() {
+  const traces = await fetch(`${API}/api/public/traces?limit=50`).then(r => r.json());
+  const tbody = document.getElementById("trace-list");
+  if (!traces.length) {
+    tbody.innerHTML = `<tr><td colspan="7" class="empty">还没有数据，先跑一下 examples/demo_agent.py</td></tr>`;
+    return;
+  }
+  tbody.innerHTML = traces.map(t => `
+    <tr data-trace="${esc(t.id)}">
+      <td class="mono">${esc(t.name)}</td>
+      <td>${esc(t.user_id || "-")}</td>
+      <td><span class="badge ${esc(t.status)}">${esc(t.status)}</span></td>
+      <td class="mono">${fmtMs(t.latency_ms)}</td>
+      <td class="mono">${t.total_tokens}</td>
+      <td class="mono">${t.total_cost.toFixed(4)}</td>
+      <td class="mono">${fmtTime(t.created_at)}</td>
+    </tr>`).join("");
+}
+
+async function openTrace(id) {
+  const data = await fetch(`${API}/api/public/traces/${id}`).then(r => r.json());
+  const { trace, spans } = data;
+  const detail = document.getElementById("detail");
+
+  if (!spans.length) { detail.innerHTML = `<div class="empty">该 trace 没有 span</div>`; return; }
+
+  const byId = Object.fromEntries(spans.map(s => [s.id, s]));
+  const depth = s => { let d = 0, p = s.parent_span_id; const seen = new Set([s.id]); while (p && byId[p] && !seen.has(p)) { seen.add(p); d++; p = byId[p].parent_span_id; } return d; };
+
+  const starts = spans.map(s => new Date(s.start_time).getTime()).filter(n => !isNaN(n));
+  const ends = spans.map(s => new Date(s.end_time).getTime()).filter(n => !isNaN(n));
+  const t0 = Math.min(...starts);
+  const t1 = Math.max(...ends, t0 + 1);
+  const total = Math.max(t1 - t0, 1);
+
+  const rows = spans.map(s => {
+    const st = new Date(s.start_time).getTime();
+    const en = s.end_time ? new Date(s.end_time).getTime() : st;
+    const left = ((st - t0) / total) * 100;
+    const width = Math.max(((en - st) / total) * 100, 0.5);
+    const pad = depth(s) * 18;
+    const typeClass = s.type === "generation" ? "generation" : s.type === "tool" ? "tool" : "";
+    const errClass = s.status === "error" ? "error" : "";
+    return `<div class="wf-row">
+      <div class="wf-name" style="padding-left:${pad}px" title="${esc(s.name)}">
+        <span class="badge type">${esc(s.type)}</span>${esc(s.name)}
+      </div>
+      <div class="wf-track"><div class="wf-bar ${typeClass} ${errClass}" style="left:${left}%;width:${width}%"></div></div>
+      <div class="wf-latency">${fmtMs(s.latency_ms)}</div>
+    </div>`;
+  }).join("");
+
+  const root = spans.find(s => !s.parent_span_id);
+  detail.innerHTML = `
+    <div class="section-title">Trace 详情 · ${esc(trace.name)}</div>
+    <div class="kv">ID: <span class="mono">${esc(trace.id)}</span> · 状态: <span class="badge ${esc(trace.status)}">${esc(trace.status)}</span> · 耗时: ${fmtMs(trace.latency_ms)} · Tokens: ${trace.total_tokens} · 成本: $${trace.total_cost.toFixed(4)}</div>
+    <div class="kv">${esc(JSON.stringify(trace.metadata || {}))}</div>
+    <div style="margin:14px 0">${rows}</div>
+    ${root && root.input ? `<div class="kv">输入</div><pre>${esc(JSON.stringify(root.input, null, 2))}</pre>` : ""}
+    ${root && root.output ? `<div class="kv">输出</div><pre>${esc(JSON.stringify(root.output, null, 2))}</pre>` : ""}
+    <button id="capture" style="padding:8px">将此输入沉淀为评测样本</button><div id="capture-message" class="kv"></div>`;
+  document.getElementById('capture').onclick = async () => {
+    const expected = prompt('输入人工确认的标准答案（精确匹配），用于新建不可变数据集：');
+    if (!expected) return;
+    const r = await fetch('/api/public/datasets', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({name:'Captured · '+trace.name,items:[{id:'case-1',input:trace.input,expected,source_trace_id:trace.id}]})});
+    const data = await r.json();
+    document.getElementById('capture-message').textContent = r.ok ? '数据集已创建：'+data.id : JSON.stringify(data.detail);
+  };
+  detail.scrollIntoView({ behavior: "smooth" });
+}
+
+function refresh() {
+  loadMetrics();
+  loadTraces();
+}
+
+refresh();
+document.getElementById('trace-list').onclick = e => { const row=e.target.closest('[data-trace]'); if(row)openTrace(row.dataset.trace); };
+const linkedTrace = new URLSearchParams(location.search).get('trace');
+if(linkedTrace)openTrace(encodeURIComponent(linkedTrace));
+setInterval(refresh, 5000);
+</script>
+</body>
+</html>

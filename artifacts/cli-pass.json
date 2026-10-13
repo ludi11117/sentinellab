@@ -1,0 +1,235 @@
+{
+  "id": "361794ef-d9a6-4ff6-9cb5-8606bee187ef",
+  "baseline_id": "dde8b516-6003-4b4d-a3f2-58ccb12ed619",
+  "candidate_id": "fcfc922e-ce9c-4907-b4b2-90c134692834",
+  "policy": {
+    "min_samples": 10,
+    "min_quality": 0.9,
+    "max_quality_drop": 0.05,
+    "max_mean_cost": 0.02,
+    "max_p95_latency_ms": 3000,
+    "max_error_rate": 0
+  },
+  "decision": "pass",
+  "checks": [
+    {
+      "name": "sample_size",
+      "actual": 20,
+      "limit": 10,
+      "passed": true
+    },
+    {
+      "name": "quality_floor",
+      "actual": 1.0,
+      "limit": 0.9,
+      "passed": true
+    },
+    {
+      "name": "paired_quality_lower_bound",
+      "actual": 0.0,
+      "limit": -0.05,
+      "passed": true
+    },
+    {
+      "name": "mean_cost",
+      "actual": 0.005,
+      "limit": 0.02,
+      "passed": true
+    },
+    {
+      "name": "p95_latency_ms",
+      "actual": 900.0,
+      "limit": 3000,
+      "passed": true
+    },
+    {
+      "name": "error_rate",
+      "actual": 0.0,
+      "limit": 0,
+      "passed": true
+    }
+  ],
+  "baseline": {
+    "samples": 20,
+    "quality": 1.0,
+    "mean_cost": 0.012,
+    "p95_latency_ms": 1800.0,
+    "error_rate": 0.0
+  },
+  "candidate": {
+    "samples": 20,
+    "quality": 1.0,
+    "mean_cost": 0.005,
+    "p95_latency_ms": 900.0,
+    "error_rate": 0.0
+  },
+  "quality_delta": 0.0,
+  "paired_bootstrap": {
+    "lower_95_one_sided": 0.0,
+    "resamples": 2000,
+    "seed": 42
+  },
+  "pairs": [
+    {
+      "item_id": "case-00",
+      "baseline_trace_id": "510695a9-861b-4ad4-bb6e-d63290a142a7",
+      "candidate_trace_id": "6512d9b1-e41e-4d7e-8c2b-10bad7de3c8d",
+      "baseline_score": 1,
+      "candidate_score": 1,
+      "delta": 0
+    },
+    {
+      "item_id": "case-01",
+      "baseline_trace_id": "533a33fe-c1ff-469a-8d22-f863a3983e6d",
+      "candidate_trace_id": "5e452ee9-83f6-4e95-9f5d-e670796a63ea",
+      "baseline_score": 1,
+      "candidate_score": 1,
+      "delta": 0
+    },
+    {
+      "item_id": "case-02",
+      "baseline_trace_id": "98026052-23e4-4d89-a917-907f2712116b",
+      "candidate_trace_id": "c6e6e1ac-e273-43cf-8719-a23ba59229bb",
+      "baseline_score": 1,
+      "candidate_score": 1,
+      "delta": 0
+    },
+    {
+      "item_id": "case-03",
+      "baseline_trace_id": "dda226a1-dde1-482b-ae95-6957cbe66668",
+      "candidate_trace_id": "5a8c43fc-9464-4591-86d0-4fe7f834025a",
+      "baseline_score": 1,
+      "candidate_score": 1,
+      "delta": 0
+    },
+    {
+      "item_id": "case-04",
+      "baseline_trace_id": "e07821f4-5f34-450b-b6e1-0de2a86d8bf8",
+      "candidate_trace_id": "515e28a6-4789-48cd-9874-071012ab746c",
+      "baseline_score": 1,
+      "candidate_score": 1,
+      "delta": 0
+    },
+    {
+      "item_id": "case-05",
+      "baseline_trace_id": "e5106941-ef5d-48a1-83c8-e973895bb5f1",
+      "candidate_trace_id": "4945636d-7276-43a0-b94a-4fb207ef420b",
+      "baseline_score": 1,
+      "candidate_score": 1,
+      "delta": 0
+    },
+    {
+      "item_id": "case-06",
+      "baseline_trace_id": "11d9e378-5c64-4bd0-910d-f78286ca3734",
+      "candidate_trace_id": "65930a8b-c885-4b4b-b957-91aa4e0bdae3",
+      "baseline_score": 1,
+      "candidate_score": 1,
+      "delta": 0
+    },
+    {
+      "item_id": "case-07",
+      "baseline_trace_id": "fa0f2348-1cc7-42ba-9a46-9779b1310dfa",
+      "candidate_trace_id": "a2e07f35-035c-4376-8411-6762bf9d25dd",
+      "baseline_score": 1,
+      "candidate_score": 1,
+      "delta": 0
+    },
+    {
+      "item_id": "case-08",
+      "baseline_trace_id": "2008b2cd-4fa5-41db-881b-1506a47a7f22",
+      "candidate_trace_id": "1890d1ab-b7bb-4d21-9a0a-14443265c447",
+      "baseline_score": 1,
+      "candidate_score": 1,
+      "delta": 0
+    },
+    {
+      "item_id": "case-09",
+      "baseline_trace_id": "ecf05e0d-878c-43e7-973e-09fa8020223d",
+      "candidate_trace_id": "9b36ada7-8378-4104-9640-30671bac5a33",
+      "baseline_score": 1,
+      "candidate_score": 1,
+      "delta": 0
+    },
+    {
+      "item_id": "case-10",
+      "baseline_trace_id": "5c51c4c6-00e2-48c0-b6ac-5e75293f3c6d",
+      "candidate_trace_id": "60d5b0c2-0160-4739-85fe-868f1d87dc64",
+      "baseline_score": 1,
+      "candidate_score": 1,
+      "delta": 0
+    },
+    {
+      "item_id": "case-11",
+      "baseline_trace_id": "6def6cca-9efd-46d7-9077-129c26f15ff4",
+      "candidate_trace_id": "b20dc213-b9b8-4afb-86f7-c5c682ba00b8",
+      "baseline_score": 1,
+      "candidate_score": 1,
+      "delta": 0
+    },
+    {
+      "item_id": "case-12",
+      "baseline_trace_id": "eedd45db-8b0c-485e-a525-2a16d30b0148",
+      "candidate_trace_id": "9d03702a-8a0c-44b9-8ac0-5ac9022a742a",
+      "baseline_score": 1,
+      "candidate_score": 1,
+      "delta": 0
+    },
+    {
+      "item_id": "case-13",
+      "baseline_trace_id": "d16ae374-9a34-48f6-940e-72aca264335b",
+      "candidate_trace_id": "403c81fe-425f-471f-87cc-c9b67ef31b16",
+      "baseline_score": 1,
+      "candidate_score": 1,
+      "delta": 0
+    },
+    {
+      "item_id": "case-14",
+      "baseline_trace_id": "18d054a4-2d78-4521-bf50-7fb36128c807",
+      "candidate_trace_id": "7b5380c9-7fce-4874-99bc-5856bb4ddd39",
+      "baseline_score": 1,
+      "candidate_score": 1,
+      "delta": 0
+    },
+    {
+      "item_id": "case-15",
+      "baseline_trace_id": "6ee815bb-229a-4994-8b3e-aed7e9a48dd7",
+      "candidate_trace_id": "ad342f01-f0b6-4b3f-addc-c8dd04ae9418",
+      "baseline_score": 1,
+      "candidate_score": 1,
+      "delta": 0
+    },
+    {
+      "item_id": "case-16",
+      "baseline_trace_id": "8e4c0978-bee9-400b-977d-849421e3963f",
+      "candidate_trace_id": "6b9a8693-5961-4506-a688-97f624f4f267",
+      "baseline_score": 1,
+      "candidate_score": 1,
+      "delta": 0
+    },
+    {
+      "item_id": "case-17",
+      "baseline_trace_id": "342982f5-5c06-4b7d-aac2-f4baa31de5e6",
+      "candidate_trace_id": "e018499d-bf6b-43d2-81bc-8f3d083e90c3",
+      "baseline_score": 1,
+      "candidate_score": 1,
+      "delta": 0
+    },
+    {
+      "item_id": "case-18",
+      "baseline_trace_id": "7b552b25-9f34-4e3b-8776-1f74759b03db",
+      "candidate_trace_id": "8d488c20-54c7-47c3-9914-4c722e747c3d",
+      "baseline_score": 1,
+      "candidate_score": 1,
+      "delta": 0
+    },
+    {
+      "item_id": "case-19",
+      "baseline_trace_id": "2e0327de-8419-4a3e-9836-a993281d3928",
+      "candidate_trace_id": "c9d88391-7bbc-4113-8a13-8aab9df91edd",
+      "baseline_score": 1,
+      "candidate_score": 1,
+      "delta": 0
+    }
+  ],
+  "limitations": "Checks apply only to this fixed dataset. Bootstrap assumes independent cases; small or unrepresentative sets cannot establish production safety."
+}

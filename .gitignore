@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+
+# Local dev database
+*.db
+dev.db
+
+# Env
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# Runtime artifacts and browser dependencies
+node_modules/
+*.db-wal
+*.db-shm
+*.log
+artifacts/server.pid
+artifacts/*.pid
+artifacts/*token*
+artifacts/*credentials*
+artifacts/*keys*
