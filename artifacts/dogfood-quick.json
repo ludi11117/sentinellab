@@ -1,0 +1,4582 @@
+{
+  "measured_at": "2026-10-13T06:53:17.896Z",
+  "provenance": "developer_agent_browser_dogfood",
+  "mode": "quick",
+  "session": {
+    "datasetId": "884f7c4c-9453-40d2-932f-3abdf58ea50a",
+    "baselineId": "39b4fc78-d84b-40e0-a197-fe10ee916f61",
+    "candidateId": "2e85e01a-93d3-47c6-a8d8-5f051080cb7c",
+    "template": "demo",
+    "pendingTemplate": false,
+    "corpus": [
+      {
+        "id": "px-voltage",
+        "title": "PX40 supply voltage power electrical",
+        "body": "PX40 requires 24V DC supply. Never connect 220V AC."
+      },
+      {
+        "id": "px-media",
+        "title": "PX40 medium compatibility chemical fluid",
+        "body": "PX40 supports clean water only. It is not approved for acid or solvent service."
+      },
+      {
+        "id": "vx-lead",
+        "title": "VX12 delivery leadtime availability schedule",
+        "body": "VX12 delivery leadtime is 15 business days after approved purchase order."
+      },
+      {
+        "id": "vx-moq",
+        "title": "VX12 minimum quantity MOQ lot",
+        "body": "VX12 minimum order quantity MOQ is 5 units per lot."
+      },
+      {
+        "id": "br-substitution",
+        "title": "BR8 replacement substitute equivalent fit",
+        "body": "BR8 replacement requires matching bore diameter, rated speed and sealed housing. Engineering approval is mandatory."
+      },
+      {
+        "id": "br-cert",
+        "title": "BR8 certification inspection evidence quality",
+        "body": "BR8 certification requires supplier inspection report IR-28 for the shipped batch."
+      },
+      {
+        "id": "zx-warranty",
+        "title": "ZX7 warranty failure coverage repair",
+        "body": "ZX7 warranty coverage is 12 months from delivery and excludes installation damage."
+      },
+      {
+        "id": "zx-shipping",
+        "title": "ZX7 shipping freight transport handling",
+        "body": "ZX7 shipping requires upright transport and shock indicator label SI-4."
+      },
+      {
+        "id": "network",
+        "title": "CAB9 network protocol connectivity fieldbus",
+        "body": "CAB9 supports Modbus TCP only; PROFINET compatibility is not documented."
+      },
+      {
+        "id": "supplier",
+        "title": "Supplier approval onboarding qualification source",
+        "body": "Supplier onboarding needs qualification review QF-6 before any order commitment."
+      },
+      {
+        "id": "quote",
+        "title": "Quotation validity expiry commercial draft",
+        "body": "Quotation validity expires after 14 calendar days. The assistant may prepare a draft but cannot bind a purchase."
+      },
+      {
+        "id": "payment",
+        "title": "Payment approval transfer financial authorization",
+        "body": "Payment transfer requires a human finance approval AP-2. The assistant must not transfer funds."
+      }
+    ],
+    "recipe": "quick",
+    "pendingJobs": {},
+    "baseRevision": "keyword-v1",
+    "candRevision": "retrieval-v2",
+    "candidateJobId": "7b5e3976-a9ec-404e-8380-e0e3962c047f",
+    "baselineJobId": "3932f150-bcc4-428e-9e5e-0f5c38b63634",
+    "gateId": "372fc823-1349-4395-a7f5-92e44be7fc12",
+    "roundId": "bd6bfa71-c562-42fb-83b8-e21565f9ae03",
+    "reviewIndex": 0
+  },
+  "experiments": [
+    {
+      "id": "39b4fc78-d84b-40e0-a197-fe10ee916f61",
+      "name": "Delivery evaluation",
+      "dataset_id": "884f7c4c-9453-40d2-932f-3abdf58ea50a",
+      "revision": "keyword-v1",
+      "evaluator_version": "evidence-v3",
+      "summary": {
+        "samples": 36,
+        "quality": 0.6111111111111112,
+        "mean_cost": 0,
+        "p95_latency_ms": 1,
+        "error_rate": 0
+      },
+      "created_at": "2026-10-13T06:53:12+00:00",
+      "results": [
+        {
+          "item_id": "case-00",
+          "trace_id": "f8ecc22c-e526-5cac-9b64-3143eb9717d4",
+          "input": {
+            "question": "What supply voltage does PX40 require?"
+          },
+          "expected": "24V DC",
+          "output": {
+            "answer": "PX40 requires 24V DC supply. Never connect 220V AC.",
+            "citations": [
+              "px-voltage"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "px-voltage",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-01",
+          "trace_id": "dbba71b5-aebc-5d4d-8bd9-a195c3f7cd60",
+          "input": {
+            "question": "PX40 power electrical requirement?"
+          },
+          "expected": "24V DC",
+          "output": {
+            "answer": "PX40 requires 24V DC supply. Never connect 220V AC.",
+            "citations": [
+              "px-voltage"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "px-voltage",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-02",
+          "trace_id": "4e738f6d-9983-53b5-93be-711832160e21",
+          "input": {
+            "question": "Does PX40 need 24V or mains electricity?"
+          },
+          "expected": "24V DC",
+          "output": {
+            "answer": "PX40 requires 24V DC supply. Never connect 220V AC.",
+            "citations": [
+              "px-voltage"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "px-voltage",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-03",
+          "trace_id": "9a4c9d6a-4650-5482-9e93-033b1fbba925",
+          "input": {
+            "question": "What medium is PX40 compatible with?"
+          },
+          "expected": "clean water only",
+          "output": {
+            "answer": "PX40 requires 24V DC supply. Never connect 220V AC.",
+            "citations": [
+              "px-voltage"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": false,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": false
+          },
+          "score": 0,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "px-media",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-04",
+          "trace_id": "f2cfa969-3aa6-5854-b1c1-3ca1a5630f5a",
+          "input": {
+            "question": "PX40 chemical fluid compatibility?"
+          },
+          "expected": "clean water only",
+          "output": {
+            "answer": "PX40 requires 24V DC supply. Never connect 220V AC.",
+            "citations": [
+              "px-voltage"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": false,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": false
+          },
+          "score": 0,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "px-media",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-05",
+          "trace_id": "9bf95a23-a0d4-58ad-b4c8-ae3ab545b671",
+          "input": {
+            "question": "Can PX40 handle acid or solvent?"
+          },
+          "expected": "clean water only",
+          "output": {
+            "answer": "PX40 requires 24V DC supply. Never connect 220V AC.",
+            "citations": [
+              "px-voltage"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": false,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": false
+          },
+          "score": 0,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "px-media",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-06",
+          "trace_id": "5e19b95f-cd3d-5e7b-8b44-ee5ab232d7e4",
+          "input": {
+            "question": "What is VX12 delivery leadtime?"
+          },
+          "expected": "15 business days",
+          "output": {
+            "answer": "VX12 delivery leadtime is 15 business days after approved purchase order.",
+            "citations": [
+              "vx-lead"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "vx-lead",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-07",
+          "trace_id": "b1d01040-0477-5008-b731-f95e1e9aad85",
+          "input": {
+            "question": "VX12 availability schedule?"
+          },
+          "expected": "15 business days",
+          "output": {
+            "answer": "VX12 delivery leadtime is 15 business days after approved purchase order.",
+            "citations": [
+              "vx-lead"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "vx-lead",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-08",
+          "trace_id": "893cbb66-6cd7-5178-a4f7-76e01a9445d8",
+          "input": {
+            "question": "When will VX12 be delivered after approved purchase order?"
+          },
+          "expected": "15 business days",
+          "output": {
+            "answer": "VX12 delivery leadtime is 15 business days after approved purchase order.",
+            "citations": [
+              "vx-lead"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "vx-lead",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-09",
+          "trace_id": "071005e9-f92e-5f44-807c-fd64cf733d00",
+          "input": {
+            "question": "VX12 minimum quantity?"
+          },
+          "expected": "5 units",
+          "output": {
+            "answer": "VX12 delivery leadtime is 15 business days after approved purchase order.",
+            "citations": [
+              "vx-lead"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": false,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": false
+          },
+          "score": 0,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "vx-moq",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-10",
+          "trace_id": "a9fd6236-0314-587d-931c-29dc4dd1c068",
+          "input": {
+            "question": "What is VX12 MOQ lot size?"
+          },
+          "expected": "5 units",
+          "output": {
+            "answer": "VX12 delivery leadtime is 15 business days after approved purchase order.",
+            "citations": [
+              "vx-lead"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": false,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": false
+          },
+          "score": 0,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "vx-moq",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-11",
+          "trace_id": "3534efeb-b920-5545-8902-685754f1b5b1",
+          "input": {
+            "question": "How many VX12 units must be ordered at least?"
+          },
+          "expected": "5 units",
+          "output": {
+            "answer": "VX12 delivery leadtime is 15 business days after approved purchase order.",
+            "citations": [
+              "vx-lead"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": false,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": false
+          },
+          "score": 0,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "vx-moq",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-12",
+          "trace_id": "9c558642-80ee-553c-8f90-0b53b3e00fa3",
+          "input": {
+            "question": "Can BR8 be replaced with an equivalent?"
+          },
+          "expected": "Engineering approval is mandatory",
+          "output": {
+            "answer": "BR8 replacement requires matching bore diameter, rated speed and sealed housing. Engineering approval is mandatory.",
+            "citations": [
+              "br-substitution"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "br-substitution",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-13",
+          "trace_id": "ea1c619e-42de-505f-b7e1-9aad8c0ab26e",
+          "input": {
+            "question": "BR8 substitute fit approval requirement?"
+          },
+          "expected": "Engineering approval is mandatory",
+          "output": {
+            "answer": "BR8 replacement requires matching bore diameter, rated speed and sealed housing. Engineering approval is mandatory.",
+            "citations": [
+              "br-substitution"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "br-substitution",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-14",
+          "trace_id": "86eab57a-cdc3-5b89-8500-fcdaa39dde97",
+          "input": {
+            "question": "How do we approve BR8 replacement bore diameter rated speed?"
+          },
+          "expected": "Engineering approval is mandatory",
+          "output": {
+            "answer": "BR8 replacement requires matching bore diameter, rated speed and sealed housing. Engineering approval is mandatory.",
+            "citations": [
+              "br-substitution"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "br-substitution",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-15",
+          "trace_id": "ca793465-1f60-5257-86b8-1025df090d66",
+          "input": {
+            "question": "BR8 certification evidence?"
+          },
+          "expected": "IR-28",
+          "output": {
+            "answer": "BR8 replacement requires matching bore diameter, rated speed and sealed housing. Engineering approval is mandatory.",
+            "citations": [
+              "br-substitution"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": false,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": false
+          },
+          "score": 0,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "br-cert",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-16",
+          "trace_id": "8045d70d-c818-5178-81f3-7fcac06b7384",
+          "input": {
+            "question": "What inspection report is needed for BR8?"
+          },
+          "expected": "IR-28",
+          "output": {
+            "answer": "BR8 replacement requires matching bore diameter, rated speed and sealed housing. Engineering approval is mandatory.",
+            "citations": [
+              "br-substitution"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": false,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": false
+          },
+          "score": 0,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "br-cert",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-17",
+          "trace_id": "657afdb2-909f-5536-b4dc-cf1181c1e8fd",
+          "input": {
+            "question": "Which BR8 quality document accompanies the shipped batch?"
+          },
+          "expected": "IR-28",
+          "output": {
+            "answer": "BR8 replacement requires matching bore diameter, rated speed and sealed housing. Engineering approval is mandatory.",
+            "citations": [
+              "br-substitution"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": false,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": false
+          },
+          "score": 0,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "br-cert",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-18",
+          "trace_id": "91cbcee4-c476-5d7b-9f67-d1cd466c5e72",
+          "input": {
+            "question": "ZX7 warranty coverage?"
+          },
+          "expected": "12 months",
+          "output": {
+            "answer": "ZX7 warranty coverage is 12 months from delivery and excludes installation damage.",
+            "citations": [
+              "zx-warranty"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "zx-warranty",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-19",
+          "trace_id": "f7570ada-0093-57a9-8874-0e0cbbc9f8cc",
+          "input": {
+            "question": "How long is ZX7 failure repair coverage?"
+          },
+          "expected": "12 months",
+          "output": {
+            "answer": "ZX7 warranty coverage is 12 months from delivery and excludes installation damage.",
+            "citations": [
+              "zx-warranty"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "zx-warranty",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-20",
+          "trace_id": "9221f65f-162d-54dc-a5a8-93c4d9cd5566",
+          "input": {
+            "question": "ZX7 installation damage warranty exclusions?"
+          },
+          "expected": "12 months",
+          "output": {
+            "answer": "ZX7 warranty coverage is 12 months from delivery and excludes installation damage.",
+            "citations": [
+              "zx-warranty"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "zx-warranty",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-21",
+          "trace_id": "8e5de0df-af30-5080-962a-8dd8ca3d24e8",
+          "input": {
+            "question": "ZX7 shipping handling requirement?"
+          },
+          "expected": "SI-4",
+          "output": {
+            "answer": "ZX7 warranty coverage is 12 months from delivery and excludes installation damage.",
+            "citations": [
+              "zx-warranty"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": false,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": false
+          },
+          "score": 0,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "zx-shipping",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-22",
+          "trace_id": "02d1cb94-ddb1-5d9b-ae2c-9eaaf7c1b706",
+          "input": {
+            "question": "ZX7 freight transport instructions?"
+          },
+          "expected": "SI-4",
+          "output": {
+            "answer": "ZX7 warranty coverage is 12 months from delivery and excludes installation damage.",
+            "citations": [
+              "zx-warranty"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": false,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": false
+          },
+          "score": 0,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "zx-shipping",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-23",
+          "trace_id": "f97740e3-5d5e-50c6-84dc-37e50750379e",
+          "input": {
+            "question": "Which shock indicator label is required for ZX7?"
+          },
+          "expected": "SI-4",
+          "output": {
+            "answer": "ZX7 warranty coverage is 12 months from delivery and excludes installation damage.",
+            "citations": [
+              "zx-warranty"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": false,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": false
+          },
+          "score": 0,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "zx-shipping",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-24",
+          "trace_id": "cc9f4522-5101-5e69-b62d-3229002709aa",
+          "input": {
+            "question": "CAB9 network protocol support?"
+          },
+          "expected": "Modbus TCP only",
+          "output": {
+            "answer": "CAB9 supports Modbus TCP only; PROFINET compatibility is not documented.",
+            "citations": [
+              "network"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "network",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-25",
+          "trace_id": "a354117e-dd14-5b43-a7d6-fc3187cd3c27",
+          "input": {
+            "question": "Which CAB9 fieldbus connectivity is available?"
+          },
+          "expected": "Modbus TCP only",
+          "output": {
+            "answer": "CAB9 supports Modbus TCP only; PROFINET compatibility is not documented.",
+            "citations": [
+              "network"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "network",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-26",
+          "trace_id": "ac8224b5-cfcf-5e8a-9dbb-9a80b54e777d",
+          "input": {
+            "question": "Does CAB9 support Modbus TCP or PROFINET?"
+          },
+          "expected": "Modbus TCP only",
+          "output": {
+            "answer": "CAB9 supports Modbus TCP only; PROFINET compatibility is not documented.",
+            "citations": [
+              "network"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "network",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-27",
+          "trace_id": "e8339fef-f062-50d8-86e5-6cbd6f59da79",
+          "input": {
+            "question": "Supplier approval onboarding process?"
+          },
+          "expected": "QF-6",
+          "output": {
+            "answer": "Supplier onboarding needs qualification review QF-6 before any order commitment.",
+            "citations": [
+              "supplier"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "supplier",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-28",
+          "trace_id": "f760c9de-e62c-58c1-9570-bf1c0d8eb82b",
+          "input": {
+            "question": "Which qualification review is required for a new source?"
+          },
+          "expected": "QF-6",
+          "output": {
+            "answer": "Supplier onboarding needs qualification review QF-6 before any order commitment.",
+            "citations": [
+              "supplier"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "supplier",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-29",
+          "trace_id": "44beac37-0a11-5f1a-9c0b-0aa43b8dcd10",
+          "input": {
+            "question": "Before order commitment what supplier qualification is needed?"
+          },
+          "expected": "QF-6",
+          "output": {
+            "answer": "Supplier onboarding needs qualification review QF-6 before any order commitment.",
+            "citations": [
+              "supplier"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "supplier",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-30",
+          "trace_id": "5d708b03-31a0-5754-b14e-3aa48d149bdb",
+          "input": {
+            "question": "Quotation validity period?"
+          },
+          "expected": "14 calendar days",
+          "output": {
+            "answer": "Quotation validity expires after 14 calendar days. The assistant may prepare a draft but cannot bind a purchase.",
+            "citations": [
+              "quote"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "quote",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-31",
+          "trace_id": "35c105e4-4dd8-5315-835f-c1b7c4d59bc5",
+          "input": {
+            "question": "When does the commercial quote draft expire?"
+          },
+          "expected": "14 calendar days",
+          "output": {
+            "answer": "Quotation validity expires after 14 calendar days. The assistant may prepare a draft but cannot bind a purchase.",
+            "citations": [
+              "quote"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "quote",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-32",
+          "trace_id": "e6395449-c8da-5fb5-b07f-0878713ab2ec",
+          "input": {
+            "question": "How many calendar days is a quotation valid?"
+          },
+          "expected": "14 calendar days",
+          "output": {
+            "answer": "Quotation validity expires after 14 calendar days. The assistant may prepare a draft but cannot bind a purchase.",
+            "citations": [
+              "quote"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "quote",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-33",
+          "trace_id": "708d15c9-c57b-57cc-b3f6-935e87a5459d",
+          "input": {
+            "question": "Payment approval requirement?"
+          },
+          "expected": "AP-2",
+          "output": {
+            "answer": "Supplier onboarding needs qualification review QF-6 before any order commitment.",
+            "citations": [
+              "supplier"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": false,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": false
+          },
+          "score": 0,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "payment",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-34",
+          "trace_id": "c0df42ef-76c9-5766-be84-b2ab4045ae2e",
+          "input": {
+            "question": "Which financial authorization is required for transfer?"
+          },
+          "expected": "AP-2",
+          "output": {
+            "answer": "Payment transfer requires a human finance approval AP-2. The assistant must not transfer funds.",
+            "citations": [
+              "payment"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "payment",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-35",
+          "trace_id": "bf4cfe0a-3094-5cb4-b680-0dfa0e3ca68e",
+          "input": {
+            "question": "Can the assistant transfer funds without human finance approval?"
+          },
+          "expected": "AP-2",
+          "output": {
+            "answer": "Supplier onboarding needs qualification review QF-6 before any order commitment.",
+            "citations": [
+              "supplier"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": false,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": false
+          },
+          "score": 0,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "payment",
+          "split": "development",
+          "cost_known": true
+        }
+      ]
+    },
+    {
+      "id": "2e85e01a-93d3-47c6-a8d8-5f051080cb7c",
+      "name": "Delivery evaluation",
+      "dataset_id": "884f7c4c-9453-40d2-932f-3abdf58ea50a",
+      "revision": "retrieval-v2",
+      "evaluator_version": "evidence-v3",
+      "summary": {
+        "samples": 36,
+        "quality": 1,
+        "mean_cost": 0,
+        "p95_latency_ms": 1,
+        "error_rate": 0
+      },
+      "created_at": "2026-10-13T06:53:12+00:00",
+      "results": [
+        {
+          "item_id": "case-00",
+          "trace_id": "cfb251ca-1332-5c40-b3c4-3205aaaac08d",
+          "input": {
+            "question": "What supply voltage does PX40 require?"
+          },
+          "expected": "24V DC",
+          "output": {
+            "answer": "PX40 requires 24V DC supply. Never connect 220V AC.",
+            "citations": [
+              "px-voltage"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "px-voltage",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-01",
+          "trace_id": "14fa1d58-0ac0-5834-986c-bb4289fcea49",
+          "input": {
+            "question": "PX40 power electrical requirement?"
+          },
+          "expected": "24V DC",
+          "output": {
+            "answer": "PX40 requires 24V DC supply. Never connect 220V AC.",
+            "citations": [
+              "px-voltage"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "px-voltage",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-02",
+          "trace_id": "65413e0a-2d00-5759-9ca5-820d276f580c",
+          "input": {
+            "question": "Does PX40 need 24V or mains electricity?"
+          },
+          "expected": "24V DC",
+          "output": {
+            "answer": "PX40 requires 24V DC supply. Never connect 220V AC.",
+            "citations": [
+              "px-voltage"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "px-voltage",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-03",
+          "trace_id": "01854ff2-114b-5d5a-89b9-cfec0a019f5f",
+          "input": {
+            "question": "What medium is PX40 compatible with?"
+          },
+          "expected": "clean water only",
+          "output": {
+            "answer": "PX40 supports clean water only. It is not approved for acid or solvent service.",
+            "citations": [
+              "px-media"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "px-media",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-04",
+          "trace_id": "d2217889-4283-524b-acd6-9658f263b1d0",
+          "input": {
+            "question": "PX40 chemical fluid compatibility?"
+          },
+          "expected": "clean water only",
+          "output": {
+            "answer": "PX40 supports clean water only. It is not approved for acid or solvent service.",
+            "citations": [
+              "px-media"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "px-media",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-05",
+          "trace_id": "e73ebd36-e8d6-5854-a963-22933243983d",
+          "input": {
+            "question": "Can PX40 handle acid or solvent?"
+          },
+          "expected": "clean water only",
+          "output": {
+            "answer": "PX40 supports clean water only. It is not approved for acid or solvent service.",
+            "citations": [
+              "px-media"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "px-media",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-06",
+          "trace_id": "f2a7f74f-89eb-52be-96cd-ca88ce6d4fa5",
+          "input": {
+            "question": "What is VX12 delivery leadtime?"
+          },
+          "expected": "15 business days",
+          "output": {
+            "answer": "VX12 delivery leadtime is 15 business days after approved purchase order.",
+            "citations": [
+              "vx-lead"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "vx-lead",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-07",
+          "trace_id": "daac0829-6235-5f9e-92ea-a7e315993340",
+          "input": {
+            "question": "VX12 availability schedule?"
+          },
+          "expected": "15 business days",
+          "output": {
+            "answer": "VX12 delivery leadtime is 15 business days after approved purchase order.",
+            "citations": [
+              "vx-lead"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "vx-lead",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-08",
+          "trace_id": "30214ed2-2dbe-5532-9b4a-701a3e2d93c2",
+          "input": {
+            "question": "When will VX12 be delivered after approved purchase order?"
+          },
+          "expected": "15 business days",
+          "output": {
+            "answer": "VX12 delivery leadtime is 15 business days after approved purchase order.",
+            "citations": [
+              "vx-lead"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "vx-lead",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-09",
+          "trace_id": "dc319386-41cc-5376-a18c-f3671fe3f74b",
+          "input": {
+            "question": "VX12 minimum quantity?"
+          },
+          "expected": "5 units",
+          "output": {
+            "answer": "VX12 minimum order quantity MOQ is 5 units per lot.",
+            "citations": [
+              "vx-moq"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "vx-moq",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-10",
+          "trace_id": "d9148aba-bbc7-5803-aba8-65280f26e19d",
+          "input": {
+            "question": "What is VX12 MOQ lot size?"
+          },
+          "expected": "5 units",
+          "output": {
+            "answer": "VX12 minimum order quantity MOQ is 5 units per lot.",
+            "citations": [
+              "vx-moq"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "vx-moq",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-11",
+          "trace_id": "b58994fb-8cce-54dd-b98a-fa1bdced7c53",
+          "input": {
+            "question": "How many VX12 units must be ordered at least?"
+          },
+          "expected": "5 units",
+          "output": {
+            "answer": "VX12 minimum order quantity MOQ is 5 units per lot.",
+            "citations": [
+              "vx-moq"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "vx-moq",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-12",
+          "trace_id": "39a38b6c-788e-5994-b885-2653dd88ce6d",
+          "input": {
+            "question": "Can BR8 be replaced with an equivalent?"
+          },
+          "expected": "Engineering approval is mandatory",
+          "output": {
+            "answer": "BR8 replacement requires matching bore diameter, rated speed and sealed housing. Engineering approval is mandatory.",
+            "citations": [
+              "br-substitution"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "br-substitution",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-13",
+          "trace_id": "3babdadd-0c61-5804-9cd9-363a2b582f0e",
+          "input": {
+            "question": "BR8 substitute fit approval requirement?"
+          },
+          "expected": "Engineering approval is mandatory",
+          "output": {
+            "answer": "BR8 replacement requires matching bore diameter, rated speed and sealed housing. Engineering approval is mandatory.",
+            "citations": [
+              "br-substitution"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "br-substitution",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-14",
+          "trace_id": "d278da71-3e9e-5c21-8637-bf64328651be",
+          "input": {
+            "question": "How do we approve BR8 replacement bore diameter rated speed?"
+          },
+          "expected": "Engineering approval is mandatory",
+          "output": {
+            "answer": "BR8 replacement requires matching bore diameter, rated speed and sealed housing. Engineering approval is mandatory.",
+            "citations": [
+              "br-substitution"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "br-substitution",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-15",
+          "trace_id": "4eb0c2f5-79e7-5aac-9a55-853e4bd57e98",
+          "input": {
+            "question": "BR8 certification evidence?"
+          },
+          "expected": "IR-28",
+          "output": {
+            "answer": "BR8 certification requires supplier inspection report IR-28 for the shipped batch.",
+            "citations": [
+              "br-cert"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "br-cert",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-16",
+          "trace_id": "3ff8ed96-db8b-5306-aa13-159fbd011922",
+          "input": {
+            "question": "What inspection report is needed for BR8?"
+          },
+          "expected": "IR-28",
+          "output": {
+            "answer": "BR8 certification requires supplier inspection report IR-28 for the shipped batch.",
+            "citations": [
+              "br-cert"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "br-cert",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-17",
+          "trace_id": "95cc8720-0450-5bb8-b150-201ece4cc176",
+          "input": {
+            "question": "Which BR8 quality document accompanies the shipped batch?"
+          },
+          "expected": "IR-28",
+          "output": {
+            "answer": "BR8 certification requires supplier inspection report IR-28 for the shipped batch.",
+            "citations": [
+              "br-cert"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "br-cert",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-18",
+          "trace_id": "d5158215-8e36-59cb-ae6b-658fb6513a01",
+          "input": {
+            "question": "ZX7 warranty coverage?"
+          },
+          "expected": "12 months",
+          "output": {
+            "answer": "ZX7 warranty coverage is 12 months from delivery and excludes installation damage.",
+            "citations": [
+              "zx-warranty"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "zx-warranty",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-19",
+          "trace_id": "008b8aa4-c58c-55b9-8387-4f3dec31a28a",
+          "input": {
+            "question": "How long is ZX7 failure repair coverage?"
+          },
+          "expected": "12 months",
+          "output": {
+            "answer": "ZX7 warranty coverage is 12 months from delivery and excludes installation damage.",
+            "citations": [
+              "zx-warranty"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "zx-warranty",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-20",
+          "trace_id": "39804434-d77a-5a8a-ad9c-3c5b3eafbcba",
+          "input": {
+            "question": "ZX7 installation damage warranty exclusions?"
+          },
+          "expected": "12 months",
+          "output": {
+            "answer": "ZX7 warranty coverage is 12 months from delivery and excludes installation damage.",
+            "citations": [
+              "zx-warranty"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "zx-warranty",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-21",
+          "trace_id": "5ad3f1b1-f5d6-5f4f-8076-4f4415792bbd",
+          "input": {
+            "question": "ZX7 shipping handling requirement?"
+          },
+          "expected": "SI-4",
+          "output": {
+            "answer": "ZX7 shipping requires upright transport and shock indicator label SI-4.",
+            "citations": [
+              "zx-shipping"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "zx-shipping",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-22",
+          "trace_id": "6cda246d-5576-5d6e-a4d4-dc5604f6f80f",
+          "input": {
+            "question": "ZX7 freight transport instructions?"
+          },
+          "expected": "SI-4",
+          "output": {
+            "answer": "ZX7 shipping requires upright transport and shock indicator label SI-4.",
+            "citations": [
+              "zx-shipping"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "zx-shipping",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-23",
+          "trace_id": "d5ae25f5-e8d5-522e-8163-01cf33cc6db0",
+          "input": {
+            "question": "Which shock indicator label is required for ZX7?"
+          },
+          "expected": "SI-4",
+          "output": {
+            "answer": "ZX7 shipping requires upright transport and shock indicator label SI-4.",
+            "citations": [
+              "zx-shipping"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "zx-shipping",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-24",
+          "trace_id": "eebb49a4-e23b-58d5-8169-642e5961c789",
+          "input": {
+            "question": "CAB9 network protocol support?"
+          },
+          "expected": "Modbus TCP only",
+          "output": {
+            "answer": "CAB9 supports Modbus TCP only; PROFINET compatibility is not documented.",
+            "citations": [
+              "network"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "network",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-25",
+          "trace_id": "38d6d072-af86-57eb-9a77-eba5428d4722",
+          "input": {
+            "question": "Which CAB9 fieldbus connectivity is available?"
+          },
+          "expected": "Modbus TCP only",
+          "output": {
+            "answer": "CAB9 supports Modbus TCP only; PROFINET compatibility is not documented.",
+            "citations": [
+              "network"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "network",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-26",
+          "trace_id": "c43d35c5-1429-5881-b913-1e879eec366a",
+          "input": {
+            "question": "Does CAB9 support Modbus TCP or PROFINET?"
+          },
+          "expected": "Modbus TCP only",
+          "output": {
+            "answer": "CAB9 supports Modbus TCP only; PROFINET compatibility is not documented.",
+            "citations": [
+              "network"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "network",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-27",
+          "trace_id": "6e76a00f-4efa-59b2-9c5c-dcf3dad086d6",
+          "input": {
+            "question": "Supplier approval onboarding process?"
+          },
+          "expected": "QF-6",
+          "output": {
+            "answer": "Supplier onboarding needs qualification review QF-6 before any order commitment.",
+            "citations": [
+              "supplier"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "supplier",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-28",
+          "trace_id": "5791ade0-b670-53a3-8bc0-573f1d829679",
+          "input": {
+            "question": "Which qualification review is required for a new source?"
+          },
+          "expected": "QF-6",
+          "output": {
+            "answer": "Supplier onboarding needs qualification review QF-6 before any order commitment.",
+            "citations": [
+              "supplier"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "supplier",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-29",
+          "trace_id": "1260ee18-e1a1-588e-bdc5-5fa0a1b9645c",
+          "input": {
+            "question": "Before order commitment what supplier qualification is needed?"
+          },
+          "expected": "QF-6",
+          "output": {
+            "answer": "Supplier onboarding needs qualification review QF-6 before any order commitment.",
+            "citations": [
+              "supplier"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "supplier",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-30",
+          "trace_id": "be8d00f8-4cf1-586c-ba3a-288d8d22a942",
+          "input": {
+            "question": "Quotation validity period?"
+          },
+          "expected": "14 calendar days",
+          "output": {
+            "answer": "Quotation validity expires after 14 calendar days. The assistant may prepare a draft but cannot bind a purchase.",
+            "citations": [
+              "quote"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "quote",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-31",
+          "trace_id": "b07e1870-f51d-5e9a-88f3-40077d42a4dc",
+          "input": {
+            "question": "When does the commercial quote draft expire?"
+          },
+          "expected": "14 calendar days",
+          "output": {
+            "answer": "Quotation validity expires after 14 calendar days. The assistant may prepare a draft but cannot bind a purchase.",
+            "citations": [
+              "quote"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "quote",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-32",
+          "trace_id": "12e62885-181c-5e93-900b-b9722b694934",
+          "input": {
+            "question": "How many calendar days is a quotation valid?"
+          },
+          "expected": "14 calendar days",
+          "output": {
+            "answer": "Quotation validity expires after 14 calendar days. The assistant may prepare a draft but cannot bind a purchase.",
+            "citations": [
+              "quote"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "quote",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-33",
+          "trace_id": "e83759be-4911-5468-af19-becb8a74f224",
+          "input": {
+            "question": "Payment approval requirement?"
+          },
+          "expected": "AP-2",
+          "output": {
+            "answer": "Payment transfer requires a human finance approval AP-2. The assistant must not transfer funds.",
+            "citations": [
+              "payment"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "payment",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-34",
+          "trace_id": "97ec63c8-21b6-5253-872b-a5b98317013b",
+          "input": {
+            "question": "Which financial authorization is required for transfer?"
+          },
+          "expected": "AP-2",
+          "output": {
+            "answer": "Payment transfer requires a human finance approval AP-2. The assistant must not transfer funds.",
+            "citations": [
+              "payment"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "payment",
+          "split": "development",
+          "cost_known": true
+        },
+        {
+          "item_id": "case-35",
+          "trace_id": "6ac99275-1d75-5904-8c15-3894f54dfaf6",
+          "input": {
+            "question": "Can the assistant transfer funds without human finance approval?"
+          },
+          "expected": "AP-2",
+          "output": {
+            "answer": "Payment transfer requires a human finance approval AP-2. The assistant must not transfer funds.",
+            "citations": [
+              "payment"
+            ],
+            "executor": "delivery-pipeline-v5",
+            "llm_calls": 0
+          },
+          "checks": {
+            "answer": true,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true
+          },
+          "score": 1,
+          "latency_ms": 1,
+          "cost": 0,
+          "tokens": 0,
+          "group": "payment",
+          "split": "development",
+          "cost_known": true
+        }
+      ]
+    }
+  ],
+  "gate": {
+    "id": "372fc823-1349-4395-a7f5-92e44be7fc12",
+    "baseline_id": "39b4fc78-d84b-40e0-a197-fe10ee916f61",
+    "candidate_id": "2e85e01a-93d3-47c6-a8d8-5f051080cb7c",
+    "created_at": "2026-10-13T06:53:16+00:00",
+    "policy": {
+      "min_samples": 10,
+      "min_quality": 0.8,
+      "max_quality_drop": 0.05,
+      "max_mean_cost": 0.02,
+      "max_p95_latency_ms": 30000,
+      "max_error_rate": 0,
+      "min_groups": 2,
+      "max_group_quality_drop": 0.2,
+      "require_holdout": false
+    },
+    "decision": "pass",
+    "checks": [
+      {
+        "name": "sample_size",
+        "actual": 36,
+        "limit": 10,
+        "passed": true
+      },
+      {
+        "name": "quality_floor",
+        "actual": 1,
+        "limit": 0.8,
+        "passed": true
+      },
+      {
+        "name": "paired_quality_lower_bound",
+        "actual": 0.16666666666666666,
+        "limit": -0.05,
+        "passed": true
+      },
+      {
+        "name": "mean_cost",
+        "actual": 0,
+        "limit": 0.02,
+        "passed": true
+      },
+      {
+        "name": "p95_latency_ms",
+        "actual": 1,
+        "limit": 30000,
+        "passed": true
+      },
+      {
+        "name": "error_rate",
+        "actual": 0,
+        "limit": 0,
+        "passed": true
+      },
+      {
+        "name": "independent_groups",
+        "actual": 12,
+        "limit": 2,
+        "passed": true
+      },
+      {
+        "name": "worst_group_quality_delta",
+        "actual": 0,
+        "limit": -0.2,
+        "passed": true
+      }
+    ],
+    "gate_version": "cluster-bootstrap-v2",
+    "baseline": {
+      "samples": 36,
+      "quality": 0.6111111111111112,
+      "mean_cost": 0,
+      "p95_latency_ms": 1,
+      "error_rate": 0
+    },
+    "candidate": {
+      "samples": 36,
+      "quality": 1,
+      "mean_cost": 0,
+      "p95_latency_ms": 1,
+      "error_rate": 0
+    },
+    "quality_delta": 0.38888888888888884,
+    "paired_bootstrap": {
+      "lower_95_one_sided": 0.16666666666666666,
+      "resamples": 2000,
+      "seed": 42,
+      "unit": "group",
+      "groups": 12
+    },
+    "group_deltas": {
+      "px-voltage": 0,
+      "px-media": 1,
+      "vx-lead": 0,
+      "vx-moq": 1,
+      "br-substitution": 0,
+      "br-cert": 1,
+      "zx-warranty": 0,
+      "zx-shipping": 1,
+      "network": 0,
+      "supplier": 0,
+      "quote": 0,
+      "payment": 0.6666666666666666
+    },
+    "pairs": [
+      {
+        "item_id": "case-00",
+        "baseline_trace_id": "f8ecc22c-e526-5cac-9b64-3143eb9717d4",
+        "candidate_trace_id": "cfb251ca-1332-5c40-b3c4-3205aaaac08d",
+        "baseline_score": 1,
+        "candidate_score": 1,
+        "delta": 0,
+        "group": "px-voltage"
+      },
+      {
+        "item_id": "case-01",
+        "baseline_trace_id": "dbba71b5-aebc-5d4d-8bd9-a195c3f7cd60",
+        "candidate_trace_id": "14fa1d58-0ac0-5834-986c-bb4289fcea49",
+        "baseline_score": 1,
+        "candidate_score": 1,
+        "delta": 0,
+        "group": "px-voltage"
+      },
+      {
+        "item_id": "case-02",
+        "baseline_trace_id": "4e738f6d-9983-53b5-93be-711832160e21",
+        "candidate_trace_id": "65413e0a-2d00-5759-9ca5-820d276f580c",
+        "baseline_score": 1,
+        "candidate_score": 1,
+        "delta": 0,
+        "group": "px-voltage"
+      },
+      {
+        "item_id": "case-03",
+        "baseline_trace_id": "9a4c9d6a-4650-5482-9e93-033b1fbba925",
+        "candidate_trace_id": "01854ff2-114b-5d5a-89b9-cfec0a019f5f",
+        "baseline_score": 0,
+        "candidate_score": 1,
+        "delta": 1,
+        "group": "px-media"
+      },
+      {
+        "item_id": "case-04",
+        "baseline_trace_id": "f2cfa969-3aa6-5854-b1c1-3ca1a5630f5a",
+        "candidate_trace_id": "d2217889-4283-524b-acd6-9658f263b1d0",
+        "baseline_score": 0,
+        "candidate_score": 1,
+        "delta": 1,
+        "group": "px-media"
+      },
+      {
+        "item_id": "case-05",
+        "baseline_trace_id": "9bf95a23-a0d4-58ad-b4c8-ae3ab545b671",
+        "candidate_trace_id": "e73ebd36-e8d6-5854-a963-22933243983d",
+        "baseline_score": 0,
+        "candidate_score": 1,
+        "delta": 1,
+        "group": "px-media"
+      },
+      {
+        "item_id": "case-06",
+        "baseline_trace_id": "5e19b95f-cd3d-5e7b-8b44-ee5ab232d7e4",
+        "candidate_trace_id": "f2a7f74f-89eb-52be-96cd-ca88ce6d4fa5",
+        "baseline_score": 1,
+        "candidate_score": 1,
+        "delta": 0,
+        "group": "vx-lead"
+      },
+      {
+        "item_id": "case-07",
+        "baseline_trace_id": "b1d01040-0477-5008-b731-f95e1e9aad85",
+        "candidate_trace_id": "daac0829-6235-5f9e-92ea-a7e315993340",
+        "baseline_score": 1,
+        "candidate_score": 1,
+        "delta": 0,
+        "group": "vx-lead"
+      },
+      {
+        "item_id": "case-08",
+        "baseline_trace_id": "893cbb66-6cd7-5178-a4f7-76e01a9445d8",
+        "candidate_trace_id": "30214ed2-2dbe-5532-9b4a-701a3e2d93c2",
+        "baseline_score": 1,
+        "candidate_score": 1,
+        "delta": 0,
+        "group": "vx-lead"
+      },
+      {
+        "item_id": "case-09",
+        "baseline_trace_id": "071005e9-f92e-5f44-807c-fd64cf733d00",
+        "candidate_trace_id": "dc319386-41cc-5376-a18c-f3671fe3f74b",
+        "baseline_score": 0,
+        "candidate_score": 1,
+        "delta": 1,
+        "group": "vx-moq"
+      },
+      {
+        "item_id": "case-10",
+        "baseline_trace_id": "a9fd6236-0314-587d-931c-29dc4dd1c068",
+        "candidate_trace_id": "d9148aba-bbc7-5803-aba8-65280f26e19d",
+        "baseline_score": 0,
+        "candidate_score": 1,
+        "delta": 1,
+        "group": "vx-moq"
+      },
+      {
+        "item_id": "case-11",
+        "baseline_trace_id": "3534efeb-b920-5545-8902-685754f1b5b1",
+        "candidate_trace_id": "b58994fb-8cce-54dd-b98a-fa1bdced7c53",
+        "baseline_score": 0,
+        "candidate_score": 1,
+        "delta": 1,
+        "group": "vx-moq"
+      },
+      {
+        "item_id": "case-12",
+        "baseline_trace_id": "9c558642-80ee-553c-8f90-0b53b3e00fa3",
+        "candidate_trace_id": "39a38b6c-788e-5994-b885-2653dd88ce6d",
+        "baseline_score": 1,
+        "candidate_score": 1,
+        "delta": 0,
+        "group": "br-substitution"
+      },
+      {
+        "item_id": "case-13",
+        "baseline_trace_id": "ea1c619e-42de-505f-b7e1-9aad8c0ab26e",
+        "candidate_trace_id": "3babdadd-0c61-5804-9cd9-363a2b582f0e",
+        "baseline_score": 1,
+        "candidate_score": 1,
+        "delta": 0,
+        "group": "br-substitution"
+      },
+      {
+        "item_id": "case-14",
+        "baseline_trace_id": "86eab57a-cdc3-5b89-8500-fcdaa39dde97",
+        "candidate_trace_id": "d278da71-3e9e-5c21-8637-bf64328651be",
+        "baseline_score": 1,
+        "candidate_score": 1,
+        "delta": 0,
+        "group": "br-substitution"
+      },
+      {
+        "item_id": "case-15",
+        "baseline_trace_id": "ca793465-1f60-5257-86b8-1025df090d66",
+        "candidate_trace_id": "4eb0c2f5-79e7-5aac-9a55-853e4bd57e98",
+        "baseline_score": 0,
+        "candidate_score": 1,
+        "delta": 1,
+        "group": "br-cert"
+      },
+      {
+        "item_id": "case-16",
+        "baseline_trace_id": "8045d70d-c818-5178-81f3-7fcac06b7384",
+        "candidate_trace_id": "3ff8ed96-db8b-5306-aa13-159fbd011922",
+        "baseline_score": 0,
+        "candidate_score": 1,
+        "delta": 1,
+        "group": "br-cert"
+      },
+      {
+        "item_id": "case-17",
+        "baseline_trace_id": "657afdb2-909f-5536-b4dc-cf1181c1e8fd",
+        "candidate_trace_id": "95cc8720-0450-5bb8-b150-201ece4cc176",
+        "baseline_score": 0,
+        "candidate_score": 1,
+        "delta": 1,
+        "group": "br-cert"
+      },
+      {
+        "item_id": "case-18",
+        "baseline_trace_id": "91cbcee4-c476-5d7b-9f67-d1cd466c5e72",
+        "candidate_trace_id": "d5158215-8e36-59cb-ae6b-658fb6513a01",
+        "baseline_score": 1,
+        "candidate_score": 1,
+        "delta": 0,
+        "group": "zx-warranty"
+      },
+      {
+        "item_id": "case-19",
+        "baseline_trace_id": "f7570ada-0093-57a9-8874-0e0cbbc9f8cc",
+        "candidate_trace_id": "008b8aa4-c58c-55b9-8387-4f3dec31a28a",
+        "baseline_score": 1,
+        "candidate_score": 1,
+        "delta": 0,
+        "group": "zx-warranty"
+      },
+      {
+        "item_id": "case-20",
+        "baseline_trace_id": "9221f65f-162d-54dc-a5a8-93c4d9cd5566",
+        "candidate_trace_id": "39804434-d77a-5a8a-ad9c-3c5b3eafbcba",
+        "baseline_score": 1,
+        "candidate_score": 1,
+        "delta": 0,
+        "group": "zx-warranty"
+      },
+      {
+        "item_id": "case-21",
+        "baseline_trace_id": "8e5de0df-af30-5080-962a-8dd8ca3d24e8",
+        "candidate_trace_id": "5ad3f1b1-f5d6-5f4f-8076-4f4415792bbd",
+        "baseline_score": 0,
+        "candidate_score": 1,
+        "delta": 1,
+        "group": "zx-shipping"
+      },
+      {
+        "item_id": "case-22",
+        "baseline_trace_id": "02d1cb94-ddb1-5d9b-ae2c-9eaaf7c1b706",
+        "candidate_trace_id": "6cda246d-5576-5d6e-a4d4-dc5604f6f80f",
+        "baseline_score": 0,
+        "candidate_score": 1,
+        "delta": 1,
+        "group": "zx-shipping"
+      },
+      {
+        "item_id": "case-23",
+        "baseline_trace_id": "f97740e3-5d5e-50c6-84dc-37e50750379e",
+        "candidate_trace_id": "d5ae25f5-e8d5-522e-8163-01cf33cc6db0",
+        "baseline_score": 0,
+        "candidate_score": 1,
+        "delta": 1,
+        "group": "zx-shipping"
+      },
+      {
+        "item_id": "case-24",
+        "baseline_trace_id": "cc9f4522-5101-5e69-b62d-3229002709aa",
+        "candidate_trace_id": "eebb49a4-e23b-58d5-8169-642e5961c789",
+        "baseline_score": 1,
+        "candidate_score": 1,
+        "delta": 0,
+        "group": "network"
+      },
+      {
+        "item_id": "case-25",
+        "baseline_trace_id": "a354117e-dd14-5b43-a7d6-fc3187cd3c27",
+        "candidate_trace_id": "38d6d072-af86-57eb-9a77-eba5428d4722",
+        "baseline_score": 1,
+        "candidate_score": 1,
+        "delta": 0,
+        "group": "network"
+      },
+      {
+        "item_id": "case-26",
+        "baseline_trace_id": "ac8224b5-cfcf-5e8a-9dbb-9a80b54e777d",
+        "candidate_trace_id": "c43d35c5-1429-5881-b913-1e879eec366a",
+        "baseline_score": 1,
+        "candidate_score": 1,
+        "delta": 0,
+        "group": "network"
+      },
+      {
+        "item_id": "case-27",
+        "baseline_trace_id": "e8339fef-f062-50d8-86e5-6cbd6f59da79",
+        "candidate_trace_id": "6e76a00f-4efa-59b2-9c5c-dcf3dad086d6",
+        "baseline_score": 1,
+        "candidate_score": 1,
+        "delta": 0,
+        "group": "supplier"
+      },
+      {
+        "item_id": "case-28",
+        "baseline_trace_id": "f760c9de-e62c-58c1-9570-bf1c0d8eb82b",
+        "candidate_trace_id": "5791ade0-b670-53a3-8bc0-573f1d829679",
+        "baseline_score": 1,
+        "candidate_score": 1,
+        "delta": 0,
+        "group": "supplier"
+      },
+      {
+        "item_id": "case-29",
+        "baseline_trace_id": "44beac37-0a11-5f1a-9c0b-0aa43b8dcd10",
+        "candidate_trace_id": "1260ee18-e1a1-588e-bdc5-5fa0a1b9645c",
+        "baseline_score": 1,
+        "candidate_score": 1,
+        "delta": 0,
+        "group": "supplier"
+      },
+      {
+        "item_id": "case-30",
+        "baseline_trace_id": "5d708b03-31a0-5754-b14e-3aa48d149bdb",
+        "candidate_trace_id": "be8d00f8-4cf1-586c-ba3a-288d8d22a942",
+        "baseline_score": 1,
+        "candidate_score": 1,
+        "delta": 0,
+        "group": "quote"
+      },
+      {
+        "item_id": "case-31",
+        "baseline_trace_id": "35c105e4-4dd8-5315-835f-c1b7c4d59bc5",
+        "candidate_trace_id": "b07e1870-f51d-5e9a-88f3-40077d42a4dc",
+        "baseline_score": 1,
+        "candidate_score": 1,
+        "delta": 0,
+        "group": "quote"
+      },
+      {
+        "item_id": "case-32",
+        "baseline_trace_id": "e6395449-c8da-5fb5-b07f-0878713ab2ec",
+        "candidate_trace_id": "12e62885-181c-5e93-900b-b9722b694934",
+        "baseline_score": 1,
+        "candidate_score": 1,
+        "delta": 0,
+        "group": "quote"
+      },
+      {
+        "item_id": "case-33",
+        "baseline_trace_id": "708d15c9-c57b-57cc-b3f6-935e87a5459d",
+        "candidate_trace_id": "e83759be-4911-5468-af19-becb8a74f224",
+        "baseline_score": 0,
+        "candidate_score": 1,
+        "delta": 1,
+        "group": "payment"
+      },
+      {
+        "item_id": "case-34",
+        "baseline_trace_id": "c0df42ef-76c9-5766-be84-b2ab4045ae2e",
+        "candidate_trace_id": "97ec63c8-21b6-5253-872b-a5b98317013b",
+        "baseline_score": 1,
+        "candidate_score": 1,
+        "delta": 0,
+        "group": "payment"
+      },
+      {
+        "item_id": "case-35",
+        "baseline_trace_id": "bf4cfe0a-3094-5cb4-b680-0dfa0e3ca68e",
+        "candidate_trace_id": "6ac99275-1d75-5904-8c15-3894f54dfaf6",
+        "baseline_score": 0,
+        "candidate_score": 1,
+        "delta": 1,
+        "group": "payment"
+      }
+    ],
+    "limitations": "Checks apply only to this fixed dataset. Bootstrap assumes independent cases; small or unrepresentative sets cannot establish production safety."
+  },
+  "review": {
+    "id": "bd6bfa71-c562-42fb-83b8-e21565f9ae03",
+    "samples": 36,
+    "blind": true,
+    "tasks": [
+      {
+        "item_id": "case-00",
+        "input": {
+          "question": "What supply voltage does PX40 require?"
+        },
+        "left": {
+          "answer": "PX40 requires 24V DC supply. Never connect 220V AC.",
+          "citations": [
+            "px-voltage"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "px-voltage",
+              "title": "PX40 supply voltage power electrical",
+              "body": "PX40 requires 24V DC supply. Never connect 220V AC.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "right": {
+          "answer": "PX40 requires 24V DC supply. Never connect 220V AC.",
+          "citations": [
+            "px-voltage"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "px-voltage",
+              "title": "PX40 supply voltage power electrical",
+              "body": "PX40 requires 24V DC supply. Never connect 220V AC.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "voted": false,
+        "self_reviewed": false,
+        "reference_documents": [
+          {
+            "id": "px-voltage",
+            "body": "PX40 requires 24V DC supply. Never connect 220V AC."
+          },
+          {
+            "id": "px-media",
+            "body": "PX40 supports clean water only. It is not approved for acid or solvent service."
+          }
+        ]
+      },
+      {
+        "item_id": "case-01",
+        "input": {
+          "question": "PX40 power electrical requirement?"
+        },
+        "left": {
+          "answer": "PX40 requires 24V DC supply. Never connect 220V AC.",
+          "citations": [
+            "px-voltage"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "px-voltage",
+              "title": "PX40 supply voltage power electrical",
+              "body": "PX40 requires 24V DC supply. Never connect 220V AC.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "right": {
+          "answer": "PX40 requires 24V DC supply. Never connect 220V AC.",
+          "citations": [
+            "px-voltage"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "px-voltage",
+              "title": "PX40 supply voltage power electrical",
+              "body": "PX40 requires 24V DC supply. Never connect 220V AC.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "voted": false,
+        "self_reviewed": false,
+        "reference_documents": [
+          {
+            "id": "px-voltage",
+            "body": "PX40 requires 24V DC supply. Never connect 220V AC."
+          },
+          {
+            "id": "px-media",
+            "body": "PX40 supports clean water only. It is not approved for acid or solvent service."
+          }
+        ]
+      },
+      {
+        "item_id": "case-02",
+        "input": {
+          "question": "Does PX40 need 24V or mains electricity?"
+        },
+        "left": {
+          "answer": "PX40 requires 24V DC supply. Never connect 220V AC.",
+          "citations": [
+            "px-voltage"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "px-voltage",
+              "title": "PX40 supply voltage power electrical",
+              "body": "PX40 requires 24V DC supply. Never connect 220V AC.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "right": {
+          "answer": "PX40 requires 24V DC supply. Never connect 220V AC.",
+          "citations": [
+            "px-voltage"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "px-voltage",
+              "title": "PX40 supply voltage power electrical",
+              "body": "PX40 requires 24V DC supply. Never connect 220V AC.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "voted": false,
+        "self_reviewed": false,
+        "reference_documents": [
+          {
+            "id": "px-voltage",
+            "body": "PX40 requires 24V DC supply. Never connect 220V AC."
+          },
+          {
+            "id": "px-media",
+            "body": "PX40 supports clean water only. It is not approved for acid or solvent service."
+          }
+        ]
+      },
+      {
+        "item_id": "case-03",
+        "input": {
+          "question": "What medium is PX40 compatible with?"
+        },
+        "left": {
+          "answer": "PX40 requires 24V DC supply. Never connect 220V AC.",
+          "citations": [
+            "px-voltage"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "px-voltage",
+              "title": "PX40 supply voltage power electrical",
+              "body": "PX40 requires 24V DC supply. Never connect 220V AC.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "right": {
+          "answer": "PX40 supports clean water only. It is not approved for acid or solvent service.",
+          "citations": [
+            "px-media"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "px-media",
+              "title": "PX40 medium compatibility chemical fluid",
+              "body": "PX40 supports clean water only. It is not approved for acid or solvent service.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "voted": false,
+        "self_reviewed": false,
+        "reference_documents": [
+          {
+            "id": "px-media",
+            "body": "PX40 supports clean water only. It is not approved for acid or solvent service."
+          },
+          {
+            "id": "px-voltage",
+            "body": "PX40 requires 24V DC supply. Never connect 220V AC."
+          }
+        ]
+      },
+      {
+        "item_id": "case-04",
+        "input": {
+          "question": "PX40 chemical fluid compatibility?"
+        },
+        "left": {
+          "answer": "PX40 requires 24V DC supply. Never connect 220V AC.",
+          "citations": [
+            "px-voltage"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "px-voltage",
+              "title": "PX40 supply voltage power electrical",
+              "body": "PX40 requires 24V DC supply. Never connect 220V AC.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "right": {
+          "answer": "PX40 supports clean water only. It is not approved for acid or solvent service.",
+          "citations": [
+            "px-media"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "px-media",
+              "title": "PX40 medium compatibility chemical fluid",
+              "body": "PX40 supports clean water only. It is not approved for acid or solvent service.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "voted": false,
+        "self_reviewed": false,
+        "reference_documents": [
+          {
+            "id": "px-media",
+            "body": "PX40 supports clean water only. It is not approved for acid or solvent service."
+          },
+          {
+            "id": "px-voltage",
+            "body": "PX40 requires 24V DC supply. Never connect 220V AC."
+          }
+        ]
+      },
+      {
+        "item_id": "case-05",
+        "input": {
+          "question": "Can PX40 handle acid or solvent?"
+        },
+        "left": {
+          "answer": "PX40 supports clean water only. It is not approved for acid or solvent service.",
+          "citations": [
+            "px-media"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "px-media",
+              "title": "PX40 medium compatibility chemical fluid",
+              "body": "PX40 supports clean water only. It is not approved for acid or solvent service.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "right": {
+          "answer": "PX40 requires 24V DC supply. Never connect 220V AC.",
+          "citations": [
+            "px-voltage"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "px-voltage",
+              "title": "PX40 supply voltage power electrical",
+              "body": "PX40 requires 24V DC supply. Never connect 220V AC.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "voted": false,
+        "self_reviewed": false,
+        "reference_documents": [
+          {
+            "id": "px-media",
+            "body": "PX40 supports clean water only. It is not approved for acid or solvent service."
+          },
+          {
+            "id": "px-voltage",
+            "body": "PX40 requires 24V DC supply. Never connect 220V AC."
+          }
+        ]
+      },
+      {
+        "item_id": "case-06",
+        "input": {
+          "question": "What is VX12 delivery leadtime?"
+        },
+        "left": {
+          "answer": "VX12 delivery leadtime is 15 business days after approved purchase order.",
+          "citations": [
+            "vx-lead"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "vx-lead",
+              "title": "VX12 delivery leadtime availability schedule",
+              "body": "VX12 delivery leadtime is 15 business days after approved purchase order.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "right": {
+          "answer": "VX12 delivery leadtime is 15 business days after approved purchase order.",
+          "citations": [
+            "vx-lead"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "vx-lead",
+              "title": "VX12 delivery leadtime availability schedule",
+              "body": "VX12 delivery leadtime is 15 business days after approved purchase order.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "voted": false,
+        "self_reviewed": false,
+        "reference_documents": [
+          {
+            "id": "vx-lead",
+            "body": "VX12 delivery leadtime is 15 business days after approved purchase order."
+          },
+          {
+            "id": "vx-moq",
+            "body": "VX12 minimum order quantity MOQ is 5 units per lot."
+          }
+        ]
+      },
+      {
+        "item_id": "case-07",
+        "input": {
+          "question": "VX12 availability schedule?"
+        },
+        "left": {
+          "answer": "VX12 delivery leadtime is 15 business days after approved purchase order.",
+          "citations": [
+            "vx-lead"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "vx-lead",
+              "title": "VX12 delivery leadtime availability schedule",
+              "body": "VX12 delivery leadtime is 15 business days after approved purchase order.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "right": {
+          "answer": "VX12 delivery leadtime is 15 business days after approved purchase order.",
+          "citations": [
+            "vx-lead"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "vx-lead",
+              "title": "VX12 delivery leadtime availability schedule",
+              "body": "VX12 delivery leadtime is 15 business days after approved purchase order.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "voted": false,
+        "self_reviewed": false,
+        "reference_documents": [
+          {
+            "id": "vx-lead",
+            "body": "VX12 delivery leadtime is 15 business days after approved purchase order."
+          },
+          {
+            "id": "vx-moq",
+            "body": "VX12 minimum order quantity MOQ is 5 units per lot."
+          }
+        ]
+      },
+      {
+        "item_id": "case-08",
+        "input": {
+          "question": "When will VX12 be delivered after approved purchase order?"
+        },
+        "left": {
+          "answer": "VX12 delivery leadtime is 15 business days after approved purchase order.",
+          "citations": [
+            "vx-lead"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "vx-lead",
+              "title": "VX12 delivery leadtime availability schedule",
+              "body": "VX12 delivery leadtime is 15 business days after approved purchase order.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "right": {
+          "answer": "VX12 delivery leadtime is 15 business days after approved purchase order.",
+          "citations": [
+            "vx-lead"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "vx-lead",
+              "title": "VX12 delivery leadtime availability schedule",
+              "body": "VX12 delivery leadtime is 15 business days after approved purchase order.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "voted": false,
+        "self_reviewed": false,
+        "reference_documents": [
+          {
+            "id": "vx-lead",
+            "body": "VX12 delivery leadtime is 15 business days after approved purchase order."
+          },
+          {
+            "id": "vx-moq",
+            "body": "VX12 minimum order quantity MOQ is 5 units per lot."
+          }
+        ]
+      },
+      {
+        "item_id": "case-09",
+        "input": {
+          "question": "VX12 minimum quantity?"
+        },
+        "left": {
+          "answer": "VX12 delivery leadtime is 15 business days after approved purchase order.",
+          "citations": [
+            "vx-lead"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "vx-lead",
+              "title": "VX12 delivery leadtime availability schedule",
+              "body": "VX12 delivery leadtime is 15 business days after approved purchase order.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "right": {
+          "answer": "VX12 minimum order quantity MOQ is 5 units per lot.",
+          "citations": [
+            "vx-moq"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "vx-moq",
+              "title": "VX12 minimum quantity MOQ lot",
+              "body": "VX12 minimum order quantity MOQ is 5 units per lot.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "voted": false,
+        "self_reviewed": false,
+        "reference_documents": [
+          {
+            "id": "vx-moq",
+            "body": "VX12 minimum order quantity MOQ is 5 units per lot."
+          },
+          {
+            "id": "vx-lead",
+            "body": "VX12 delivery leadtime is 15 business days after approved purchase order."
+          }
+        ]
+      },
+      {
+        "item_id": "case-10",
+        "input": {
+          "question": "What is VX12 MOQ lot size?"
+        },
+        "left": {
+          "answer": "VX12 minimum order quantity MOQ is 5 units per lot.",
+          "citations": [
+            "vx-moq"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "vx-moq",
+              "title": "VX12 minimum quantity MOQ lot",
+              "body": "VX12 minimum order quantity MOQ is 5 units per lot.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "right": {
+          "answer": "VX12 delivery leadtime is 15 business days after approved purchase order.",
+          "citations": [
+            "vx-lead"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "vx-lead",
+              "title": "VX12 delivery leadtime availability schedule",
+              "body": "VX12 delivery leadtime is 15 business days after approved purchase order.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "voted": false,
+        "self_reviewed": false,
+        "reference_documents": [
+          {
+            "id": "vx-moq",
+            "body": "VX12 minimum order quantity MOQ is 5 units per lot."
+          },
+          {
+            "id": "vx-lead",
+            "body": "VX12 delivery leadtime is 15 business days after approved purchase order."
+          }
+        ]
+      },
+      {
+        "item_id": "case-11",
+        "input": {
+          "question": "How many VX12 units must be ordered at least?"
+        },
+        "left": {
+          "answer": "VX12 delivery leadtime is 15 business days after approved purchase order.",
+          "citations": [
+            "vx-lead"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "vx-lead",
+              "title": "VX12 delivery leadtime availability schedule",
+              "body": "VX12 delivery leadtime is 15 business days after approved purchase order.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "right": {
+          "answer": "VX12 minimum order quantity MOQ is 5 units per lot.",
+          "citations": [
+            "vx-moq"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "vx-moq",
+              "title": "VX12 minimum quantity MOQ lot",
+              "body": "VX12 minimum order quantity MOQ is 5 units per lot.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "voted": false,
+        "self_reviewed": false,
+        "reference_documents": [
+          {
+            "id": "vx-moq",
+            "body": "VX12 minimum order quantity MOQ is 5 units per lot."
+          },
+          {
+            "id": "vx-lead",
+            "body": "VX12 delivery leadtime is 15 business days after approved purchase order."
+          }
+        ]
+      },
+      {
+        "item_id": "case-12",
+        "input": {
+          "question": "Can BR8 be replaced with an equivalent?"
+        },
+        "left": {
+          "answer": "BR8 replacement requires matching bore diameter, rated speed and sealed housing. Engineering approval is mandatory.",
+          "citations": [
+            "br-substitution"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "br-substitution",
+              "title": "BR8 replacement substitute equivalent fit",
+              "body": "BR8 replacement requires matching bore diameter, rated speed and sealed housing. Engineering approval is mandatory.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "right": {
+          "answer": "BR8 replacement requires matching bore diameter, rated speed and sealed housing. Engineering approval is mandatory.",
+          "citations": [
+            "br-substitution"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "br-substitution",
+              "title": "BR8 replacement substitute equivalent fit",
+              "body": "BR8 replacement requires matching bore diameter, rated speed and sealed housing. Engineering approval is mandatory.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "voted": false,
+        "self_reviewed": false,
+        "reference_documents": [
+          {
+            "id": "br-substitution",
+            "body": "BR8 replacement requires matching bore diameter, rated speed and sealed housing. Engineering approval is mandatory."
+          },
+          {
+            "id": "br-cert",
+            "body": "BR8 certification requires supplier inspection report IR-28 for the shipped batch."
+          }
+        ]
+      },
+      {
+        "item_id": "case-13",
+        "input": {
+          "question": "BR8 substitute fit approval requirement?"
+        },
+        "left": {
+          "answer": "BR8 replacement requires matching bore diameter, rated speed and sealed housing. Engineering approval is mandatory.",
+          "citations": [
+            "br-substitution"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "br-substitution",
+              "title": "BR8 replacement substitute equivalent fit",
+              "body": "BR8 replacement requires matching bore diameter, rated speed and sealed housing. Engineering approval is mandatory.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "right": {
+          "answer": "BR8 replacement requires matching bore diameter, rated speed and sealed housing. Engineering approval is mandatory.",
+          "citations": [
+            "br-substitution"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "br-substitution",
+              "title": "BR8 replacement substitute equivalent fit",
+              "body": "BR8 replacement requires matching bore diameter, rated speed and sealed housing. Engineering approval is mandatory.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "voted": false,
+        "self_reviewed": false,
+        "reference_documents": [
+          {
+            "id": "br-substitution",
+            "body": "BR8 replacement requires matching bore diameter, rated speed and sealed housing. Engineering approval is mandatory."
+          },
+          {
+            "id": "br-cert",
+            "body": "BR8 certification requires supplier inspection report IR-28 for the shipped batch."
+          }
+        ]
+      },
+      {
+        "item_id": "case-14",
+        "input": {
+          "question": "How do we approve BR8 replacement bore diameter rated speed?"
+        },
+        "left": {
+          "answer": "BR8 replacement requires matching bore diameter, rated speed and sealed housing. Engineering approval is mandatory.",
+          "citations": [
+            "br-substitution"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "br-substitution",
+              "title": "BR8 replacement substitute equivalent fit",
+              "body": "BR8 replacement requires matching bore diameter, rated speed and sealed housing. Engineering approval is mandatory.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "right": {
+          "answer": "BR8 replacement requires matching bore diameter, rated speed and sealed housing. Engineering approval is mandatory.",
+          "citations": [
+            "br-substitution"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "br-substitution",
+              "title": "BR8 replacement substitute equivalent fit",
+              "body": "BR8 replacement requires matching bore diameter, rated speed and sealed housing. Engineering approval is mandatory.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "voted": false,
+        "self_reviewed": false,
+        "reference_documents": [
+          {
+            "id": "br-substitution",
+            "body": "BR8 replacement requires matching bore diameter, rated speed and sealed housing. Engineering approval is mandatory."
+          },
+          {
+            "id": "br-cert",
+            "body": "BR8 certification requires supplier inspection report IR-28 for the shipped batch."
+          }
+        ]
+      },
+      {
+        "item_id": "case-15",
+        "input": {
+          "question": "BR8 certification evidence?"
+        },
+        "left": {
+          "answer": "BR8 certification requires supplier inspection report IR-28 for the shipped batch.",
+          "citations": [
+            "br-cert"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "br-cert",
+              "title": "BR8 certification inspection evidence quality",
+              "body": "BR8 certification requires supplier inspection report IR-28 for the shipped batch.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "right": {
+          "answer": "BR8 replacement requires matching bore diameter, rated speed and sealed housing. Engineering approval is mandatory.",
+          "citations": [
+            "br-substitution"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "br-substitution",
+              "title": "BR8 replacement substitute equivalent fit",
+              "body": "BR8 replacement requires matching bore diameter, rated speed and sealed housing. Engineering approval is mandatory.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "voted": false,
+        "self_reviewed": false,
+        "reference_documents": [
+          {
+            "id": "br-cert",
+            "body": "BR8 certification requires supplier inspection report IR-28 for the shipped batch."
+          },
+          {
+            "id": "br-substitution",
+            "body": "BR8 replacement requires matching bore diameter, rated speed and sealed housing. Engineering approval is mandatory."
+          }
+        ]
+      },
+      {
+        "item_id": "case-16",
+        "input": {
+          "question": "What inspection report is needed for BR8?"
+        },
+        "left": {
+          "answer": "BR8 replacement requires matching bore diameter, rated speed and sealed housing. Engineering approval is mandatory.",
+          "citations": [
+            "br-substitution"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "br-substitution",
+              "title": "BR8 replacement substitute equivalent fit",
+              "body": "BR8 replacement requires matching bore diameter, rated speed and sealed housing. Engineering approval is mandatory.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "right": {
+          "answer": "BR8 certification requires supplier inspection report IR-28 for the shipped batch.",
+          "citations": [
+            "br-cert"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "br-cert",
+              "title": "BR8 certification inspection evidence quality",
+              "body": "BR8 certification requires supplier inspection report IR-28 for the shipped batch.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "voted": false,
+        "self_reviewed": false,
+        "reference_documents": [
+          {
+            "id": "br-cert",
+            "body": "BR8 certification requires supplier inspection report IR-28 for the shipped batch."
+          },
+          {
+            "id": "br-substitution",
+            "body": "BR8 replacement requires matching bore diameter, rated speed and sealed housing. Engineering approval is mandatory."
+          }
+        ]
+      },
+      {
+        "item_id": "case-17",
+        "input": {
+          "question": "Which BR8 quality document accompanies the shipped batch?"
+        },
+        "left": {
+          "answer": "BR8 certification requires supplier inspection report IR-28 for the shipped batch.",
+          "citations": [
+            "br-cert"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "br-cert",
+              "title": "BR8 certification inspection evidence quality",
+              "body": "BR8 certification requires supplier inspection report IR-28 for the shipped batch.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "right": {
+          "answer": "BR8 replacement requires matching bore diameter, rated speed and sealed housing. Engineering approval is mandatory.",
+          "citations": [
+            "br-substitution"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "br-substitution",
+              "title": "BR8 replacement substitute equivalent fit",
+              "body": "BR8 replacement requires matching bore diameter, rated speed and sealed housing. Engineering approval is mandatory.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "voted": false,
+        "self_reviewed": false,
+        "reference_documents": [
+          {
+            "id": "br-cert",
+            "body": "BR8 certification requires supplier inspection report IR-28 for the shipped batch."
+          },
+          {
+            "id": "br-substitution",
+            "body": "BR8 replacement requires matching bore diameter, rated speed and sealed housing. Engineering approval is mandatory."
+          }
+        ]
+      },
+      {
+        "item_id": "case-18",
+        "input": {
+          "question": "ZX7 warranty coverage?"
+        },
+        "left": {
+          "answer": "ZX7 warranty coverage is 12 months from delivery and excludes installation damage.",
+          "citations": [
+            "zx-warranty"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "zx-warranty",
+              "title": "ZX7 warranty failure coverage repair",
+              "body": "ZX7 warranty coverage is 12 months from delivery and excludes installation damage.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "right": {
+          "answer": "ZX7 warranty coverage is 12 months from delivery and excludes installation damage.",
+          "citations": [
+            "zx-warranty"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "zx-warranty",
+              "title": "ZX7 warranty failure coverage repair",
+              "body": "ZX7 warranty coverage is 12 months from delivery and excludes installation damage.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "voted": false,
+        "self_reviewed": false,
+        "reference_documents": [
+          {
+            "id": "zx-warranty",
+            "body": "ZX7 warranty coverage is 12 months from delivery and excludes installation damage."
+          },
+          {
+            "id": "zx-shipping",
+            "body": "ZX7 shipping requires upright transport and shock indicator label SI-4."
+          }
+        ]
+      },
+      {
+        "item_id": "case-19",
+        "input": {
+          "question": "How long is ZX7 failure repair coverage?"
+        },
+        "left": {
+          "answer": "ZX7 warranty coverage is 12 months from delivery and excludes installation damage.",
+          "citations": [
+            "zx-warranty"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "zx-warranty",
+              "title": "ZX7 warranty failure coverage repair",
+              "body": "ZX7 warranty coverage is 12 months from delivery and excludes installation damage.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "right": {
+          "answer": "ZX7 warranty coverage is 12 months from delivery and excludes installation damage.",
+          "citations": [
+            "zx-warranty"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "zx-warranty",
+              "title": "ZX7 warranty failure coverage repair",
+              "body": "ZX7 warranty coverage is 12 months from delivery and excludes installation damage.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "voted": false,
+        "self_reviewed": false,
+        "reference_documents": [
+          {
+            "id": "zx-warranty",
+            "body": "ZX7 warranty coverage is 12 months from delivery and excludes installation damage."
+          },
+          {
+            "id": "zx-shipping",
+            "body": "ZX7 shipping requires upright transport and shock indicator label SI-4."
+          }
+        ]
+      },
+      {
+        "item_id": "case-20",
+        "input": {
+          "question": "ZX7 installation damage warranty exclusions?"
+        },
+        "left": {
+          "answer": "ZX7 warranty coverage is 12 months from delivery and excludes installation damage.",
+          "citations": [
+            "zx-warranty"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "zx-warranty",
+              "title": "ZX7 warranty failure coverage repair",
+              "body": "ZX7 warranty coverage is 12 months from delivery and excludes installation damage.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "right": {
+          "answer": "ZX7 warranty coverage is 12 months from delivery and excludes installation damage.",
+          "citations": [
+            "zx-warranty"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "zx-warranty",
+              "title": "ZX7 warranty failure coverage repair",
+              "body": "ZX7 warranty coverage is 12 months from delivery and excludes installation damage.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "voted": false,
+        "self_reviewed": false,
+        "reference_documents": [
+          {
+            "id": "zx-warranty",
+            "body": "ZX7 warranty coverage is 12 months from delivery and excludes installation damage."
+          },
+          {
+            "id": "zx-shipping",
+            "body": "ZX7 shipping requires upright transport and shock indicator label SI-4."
+          }
+        ]
+      },
+      {
+        "item_id": "case-21",
+        "input": {
+          "question": "ZX7 shipping handling requirement?"
+        },
+        "left": {
+          "answer": "ZX7 warranty coverage is 12 months from delivery and excludes installation damage.",
+          "citations": [
+            "zx-warranty"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "zx-warranty",
+              "title": "ZX7 warranty failure coverage repair",
+              "body": "ZX7 warranty coverage is 12 months from delivery and excludes installation damage.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "right": {
+          "answer": "ZX7 shipping requires upright transport and shock indicator label SI-4.",
+          "citations": [
+            "zx-shipping"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "zx-shipping",
+              "title": "ZX7 shipping freight transport handling",
+              "body": "ZX7 shipping requires upright transport and shock indicator label SI-4.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "voted": false,
+        "self_reviewed": false,
+        "reference_documents": [
+          {
+            "id": "zx-shipping",
+            "body": "ZX7 shipping requires upright transport and shock indicator label SI-4."
+          },
+          {
+            "id": "zx-warranty",
+            "body": "ZX7 warranty coverage is 12 months from delivery and excludes installation damage."
+          }
+        ]
+      },
+      {
+        "item_id": "case-22",
+        "input": {
+          "question": "ZX7 freight transport instructions?"
+        },
+        "left": {
+          "answer": "ZX7 warranty coverage is 12 months from delivery and excludes installation damage.",
+          "citations": [
+            "zx-warranty"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "zx-warranty",
+              "title": "ZX7 warranty failure coverage repair",
+              "body": "ZX7 warranty coverage is 12 months from delivery and excludes installation damage.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "right": {
+          "answer": "ZX7 shipping requires upright transport and shock indicator label SI-4.",
+          "citations": [
+            "zx-shipping"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "zx-shipping",
+              "title": "ZX7 shipping freight transport handling",
+              "body": "ZX7 shipping requires upright transport and shock indicator label SI-4.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "voted": false,
+        "self_reviewed": false,
+        "reference_documents": [
+          {
+            "id": "zx-shipping",
+            "body": "ZX7 shipping requires upright transport and shock indicator label SI-4."
+          },
+          {
+            "id": "zx-warranty",
+            "body": "ZX7 warranty coverage is 12 months from delivery and excludes installation damage."
+          }
+        ]
+      },
+      {
+        "item_id": "case-23",
+        "input": {
+          "question": "Which shock indicator label is required for ZX7?"
+        },
+        "left": {
+          "answer": "ZX7 shipping requires upright transport and shock indicator label SI-4.",
+          "citations": [
+            "zx-shipping"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "zx-shipping",
+              "title": "ZX7 shipping freight transport handling",
+              "body": "ZX7 shipping requires upright transport and shock indicator label SI-4.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "right": {
+          "answer": "ZX7 warranty coverage is 12 months from delivery and excludes installation damage.",
+          "citations": [
+            "zx-warranty"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "zx-warranty",
+              "title": "ZX7 warranty failure coverage repair",
+              "body": "ZX7 warranty coverage is 12 months from delivery and excludes installation damage.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "voted": false,
+        "self_reviewed": false,
+        "reference_documents": [
+          {
+            "id": "zx-shipping",
+            "body": "ZX7 shipping requires upright transport and shock indicator label SI-4."
+          },
+          {
+            "id": "zx-warranty",
+            "body": "ZX7 warranty coverage is 12 months from delivery and excludes installation damage."
+          }
+        ]
+      },
+      {
+        "item_id": "case-24",
+        "input": {
+          "question": "CAB9 network protocol support?"
+        },
+        "left": {
+          "answer": "CAB9 supports Modbus TCP only; PROFINET compatibility is not documented.",
+          "citations": [
+            "network"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "network",
+              "title": "CAB9 network protocol connectivity fieldbus",
+              "body": "CAB9 supports Modbus TCP only; PROFINET compatibility is not documented.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "right": {
+          "answer": "CAB9 supports Modbus TCP only; PROFINET compatibility is not documented.",
+          "citations": [
+            "network"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "network",
+              "title": "CAB9 network protocol connectivity fieldbus",
+              "body": "CAB9 supports Modbus TCP only; PROFINET compatibility is not documented.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "voted": false,
+        "self_reviewed": false,
+        "reference_documents": [
+          {
+            "id": "network",
+            "body": "CAB9 supports Modbus TCP only; PROFINET compatibility is not documented."
+          },
+          {
+            "id": "px-media",
+            "body": "PX40 supports clean water only. It is not approved for acid or solvent service."
+          }
+        ]
+      },
+      {
+        "item_id": "case-25",
+        "input": {
+          "question": "Which CAB9 fieldbus connectivity is available?"
+        },
+        "left": {
+          "answer": "CAB9 supports Modbus TCP only; PROFINET compatibility is not documented.",
+          "citations": [
+            "network"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "network",
+              "title": "CAB9 network protocol connectivity fieldbus",
+              "body": "CAB9 supports Modbus TCP only; PROFINET compatibility is not documented.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "right": {
+          "answer": "CAB9 supports Modbus TCP only; PROFINET compatibility is not documented.",
+          "citations": [
+            "network"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "network",
+              "title": "CAB9 network protocol connectivity fieldbus",
+              "body": "CAB9 supports Modbus TCP only; PROFINET compatibility is not documented.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "voted": false,
+        "self_reviewed": false,
+        "reference_documents": [
+          {
+            "id": "network",
+            "body": "CAB9 supports Modbus TCP only; PROFINET compatibility is not documented."
+          }
+        ]
+      },
+      {
+        "item_id": "case-26",
+        "input": {
+          "question": "Does CAB9 support Modbus TCP or PROFINET?"
+        },
+        "left": {
+          "answer": "CAB9 supports Modbus TCP only; PROFINET compatibility is not documented.",
+          "citations": [
+            "network"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "network",
+              "title": "CAB9 network protocol connectivity fieldbus",
+              "body": "CAB9 supports Modbus TCP only; PROFINET compatibility is not documented.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "right": {
+          "answer": "CAB9 supports Modbus TCP only; PROFINET compatibility is not documented.",
+          "citations": [
+            "network"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "network",
+              "title": "CAB9 network protocol connectivity fieldbus",
+              "body": "CAB9 supports Modbus TCP only; PROFINET compatibility is not documented.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "voted": false,
+        "self_reviewed": false,
+        "reference_documents": [
+          {
+            "id": "network",
+            "body": "CAB9 supports Modbus TCP only; PROFINET compatibility is not documented."
+          },
+          {
+            "id": "px-media",
+            "body": "PX40 supports clean water only. It is not approved for acid or solvent service."
+          }
+        ]
+      },
+      {
+        "item_id": "case-27",
+        "input": {
+          "question": "Supplier approval onboarding process?"
+        },
+        "left": {
+          "answer": "Supplier onboarding needs qualification review QF-6 before any order commitment.",
+          "citations": [
+            "supplier"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "supplier",
+              "title": "Supplier approval onboarding qualification source",
+              "body": "Supplier onboarding needs qualification review QF-6 before any order commitment.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "right": {
+          "answer": "Supplier onboarding needs qualification review QF-6 before any order commitment.",
+          "citations": [
+            "supplier"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "supplier",
+              "title": "Supplier approval onboarding qualification source",
+              "body": "Supplier onboarding needs qualification review QF-6 before any order commitment.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "voted": false,
+        "self_reviewed": false,
+        "reference_documents": [
+          {
+            "id": "supplier",
+            "body": "Supplier onboarding needs qualification review QF-6 before any order commitment."
+          },
+          {
+            "id": "payment",
+            "body": "Payment transfer requires a human finance approval AP-2. The assistant must not transfer funds."
+          }
+        ]
+      },
+      {
+        "item_id": "case-28",
+        "input": {
+          "question": "Which qualification review is required for a new source?"
+        },
+        "left": {
+          "answer": "Supplier onboarding needs qualification review QF-6 before any order commitment.",
+          "citations": [
+            "supplier"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "supplier",
+              "title": "Supplier approval onboarding qualification source",
+              "body": "Supplier onboarding needs qualification review QF-6 before any order commitment.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "right": {
+          "answer": "Supplier onboarding needs qualification review QF-6 before any order commitment.",
+          "citations": [
+            "supplier"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "supplier",
+              "title": "Supplier approval onboarding qualification source",
+              "body": "Supplier onboarding needs qualification review QF-6 before any order commitment.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "voted": false,
+        "self_reviewed": false,
+        "reference_documents": [
+          {
+            "id": "supplier",
+            "body": "Supplier onboarding needs qualification review QF-6 before any order commitment."
+          }
+        ]
+      },
+      {
+        "item_id": "case-29",
+        "input": {
+          "question": "Before order commitment what supplier qualification is needed?"
+        },
+        "left": {
+          "answer": "Supplier onboarding needs qualification review QF-6 before any order commitment.",
+          "citations": [
+            "supplier"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "supplier",
+              "title": "Supplier approval onboarding qualification source",
+              "body": "Supplier onboarding needs qualification review QF-6 before any order commitment.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "right": {
+          "answer": "Supplier onboarding needs qualification review QF-6 before any order commitment.",
+          "citations": [
+            "supplier"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "supplier",
+              "title": "Supplier approval onboarding qualification source",
+              "body": "Supplier onboarding needs qualification review QF-6 before any order commitment.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "voted": false,
+        "self_reviewed": false,
+        "reference_documents": [
+          {
+            "id": "supplier",
+            "body": "Supplier onboarding needs qualification review QF-6 before any order commitment."
+          },
+          {
+            "id": "br-cert",
+            "body": "BR8 certification requires supplier inspection report IR-28 for the shipped batch."
+          }
+        ]
+      },
+      {
+        "item_id": "case-30",
+        "input": {
+          "question": "Quotation validity period?"
+        },
+        "left": {
+          "answer": "Quotation validity expires after 14 calendar days. The assistant may prepare a draft but cannot bind a purchase.",
+          "citations": [
+            "quote"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "quote",
+              "title": "Quotation validity expiry commercial draft",
+              "body": "Quotation validity expires after 14 calendar days. The assistant may prepare a draft but cannot bind a purchase.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "right": {
+          "answer": "Quotation validity expires after 14 calendar days. The assistant may prepare a draft but cannot bind a purchase.",
+          "citations": [
+            "quote"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "quote",
+              "title": "Quotation validity expiry commercial draft",
+              "body": "Quotation validity expires after 14 calendar days. The assistant may prepare a draft but cannot bind a purchase.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "voted": false,
+        "self_reviewed": false,
+        "reference_documents": [
+          {
+            "id": "quote",
+            "body": "Quotation validity expires after 14 calendar days. The assistant may prepare a draft but cannot bind a purchase."
+          }
+        ]
+      },
+      {
+        "item_id": "case-31",
+        "input": {
+          "question": "When does the commercial quote draft expire?"
+        },
+        "left": {
+          "answer": "Quotation validity expires after 14 calendar days. The assistant may prepare a draft but cannot bind a purchase.",
+          "citations": [
+            "quote"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "quote",
+              "title": "Quotation validity expiry commercial draft",
+              "body": "Quotation validity expires after 14 calendar days. The assistant may prepare a draft but cannot bind a purchase.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "right": {
+          "answer": "Quotation validity expires after 14 calendar days. The assistant may prepare a draft but cannot bind a purchase.",
+          "citations": [
+            "quote"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "quote",
+              "title": "Quotation validity expiry commercial draft",
+              "body": "Quotation validity expires after 14 calendar days. The assistant may prepare a draft but cannot bind a purchase.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "voted": false,
+        "self_reviewed": false,
+        "reference_documents": [
+          {
+            "id": "quote",
+            "body": "Quotation validity expires after 14 calendar days. The assistant may prepare a draft but cannot bind a purchase."
+          }
+        ]
+      },
+      {
+        "item_id": "case-32",
+        "input": {
+          "question": "How many calendar days is a quotation valid?"
+        },
+        "left": {
+          "answer": "Quotation validity expires after 14 calendar days. The assistant may prepare a draft but cannot bind a purchase.",
+          "citations": [
+            "quote"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "quote",
+              "title": "Quotation validity expiry commercial draft",
+              "body": "Quotation validity expires after 14 calendar days. The assistant may prepare a draft but cannot bind a purchase.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "right": {
+          "answer": "Quotation validity expires after 14 calendar days. The assistant may prepare a draft but cannot bind a purchase.",
+          "citations": [
+            "quote"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "quote",
+              "title": "Quotation validity expiry commercial draft",
+              "body": "Quotation validity expires after 14 calendar days. The assistant may prepare a draft but cannot bind a purchase.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "voted": false,
+        "self_reviewed": false,
+        "reference_documents": [
+          {
+            "id": "quote",
+            "body": "Quotation validity expires after 14 calendar days. The assistant may prepare a draft but cannot bind a purchase."
+          },
+          {
+            "id": "vx-lead",
+            "body": "VX12 delivery leadtime is 15 business days after approved purchase order."
+          }
+        ]
+      },
+      {
+        "item_id": "case-33",
+        "input": {
+          "question": "Payment approval requirement?"
+        },
+        "left": {
+          "answer": "Payment transfer requires a human finance approval AP-2. The assistant must not transfer funds.",
+          "citations": [
+            "payment"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "payment",
+              "title": "Payment approval transfer financial authorization",
+              "body": "Payment transfer requires a human finance approval AP-2. The assistant must not transfer funds.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "right": {
+          "answer": "Supplier onboarding needs qualification review QF-6 before any order commitment.",
+          "citations": [
+            "supplier"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "supplier",
+              "title": "Supplier approval onboarding qualification source",
+              "body": "Supplier onboarding needs qualification review QF-6 before any order commitment.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "voted": false,
+        "self_reviewed": false,
+        "reference_documents": [
+          {
+            "id": "payment",
+            "body": "Payment transfer requires a human finance approval AP-2. The assistant must not transfer funds."
+          },
+          {
+            "id": "supplier",
+            "body": "Supplier onboarding needs qualification review QF-6 before any order commitment."
+          }
+        ]
+      },
+      {
+        "item_id": "case-34",
+        "input": {
+          "question": "Which financial authorization is required for transfer?"
+        },
+        "left": {
+          "answer": "Payment transfer requires a human finance approval AP-2. The assistant must not transfer funds.",
+          "citations": [
+            "payment"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "payment",
+              "title": "Payment approval transfer financial authorization",
+              "body": "Payment transfer requires a human finance approval AP-2. The assistant must not transfer funds.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "right": {
+          "answer": "Payment transfer requires a human finance approval AP-2. The assistant must not transfer funds.",
+          "citations": [
+            "payment"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "payment",
+              "title": "Payment approval transfer financial authorization",
+              "body": "Payment transfer requires a human finance approval AP-2. The assistant must not transfer funds.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "voted": false,
+        "self_reviewed": false,
+        "reference_documents": [
+          {
+            "id": "payment",
+            "body": "Payment transfer requires a human finance approval AP-2. The assistant must not transfer funds."
+          }
+        ]
+      },
+      {
+        "item_id": "case-35",
+        "input": {
+          "question": "Can the assistant transfer funds without human finance approval?"
+        },
+        "left": {
+          "answer": "Supplier onboarding needs qualification review QF-6 before any order commitment.",
+          "citations": [
+            "supplier"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "supplier",
+              "title": "Supplier approval onboarding qualification source",
+              "body": "Supplier onboarding needs qualification review QF-6 before any order commitment.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "right": {
+          "answer": "Payment transfer requires a human finance approval AP-2. The assistant must not transfer funds.",
+          "citations": [
+            "payment"
+          ],
+          "quote": null,
+          "abstain": null,
+          "sources": [
+            {
+              "id": "payment",
+              "title": "Payment approval transfer financial authorization",
+              "body": "Payment transfer requires a human finance approval AP-2. The assistant must not transfer funds.",
+              "source": null,
+              "source_sha256": null
+            }
+          ]
+        },
+        "voted": false,
+        "self_reviewed": false,
+        "reference_documents": [
+          {
+            "id": "payment",
+            "body": "Payment transfer requires a human finance approval AP-2. The assistant must not transfer funds."
+          },
+          {
+            "id": "supplier",
+            "body": "Supplier onboarding needs qualification review QF-6 before any order commitment."
+          }
+        ]
+      }
+    ]
+  },
+  "browser_checks": {
+    "refresh_preserved_dataset": true,
+    "refresh_preserved_pair": true,
+    "compatible_candidates_only": true,
+    "trace_drilldown": true,
+    "download": true,
+    "no_script_errors": true,
+    "denied_tool_blocks_release": true,
+    "interrupted_post_response_recovered": true
+  },
+  "human_review": "pending_real_human",
+  "limitations": "Developer self-test on already seen regression cases, not independent holdout or customer acceptance."
+}

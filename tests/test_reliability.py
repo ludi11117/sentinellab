@@ -187,6 +187,9 @@ class IsolationTest(unittest.TestCase):
         response = self.api.post(f"/api/admin/projects/{project['id']}/keys", json={"role": "reviewer"}, headers=self.admin)
         self.assertEqual(response.status_code, 201)
         reviewer = {"Authorization": "Bearer " + response.json()["token"]}
+        context = self.api.get("/api/public/context", headers=reviewer)
+        self.assertEqual(context.json(), {"project_id": project["id"], "role": "reviewer"})
+        self.assertEqual(self.api.post("/api/public/context", headers=reviewer).status_code, 405)
         self.assertEqual(self.api.get("/api/public/reviews", headers=reviewer).status_code, 200)
         for path in ["traces", "experiments", "evidence", "datasets", "model-status"]:
             self.assertEqual(self.api.get("/api/public/" + path, headers=reviewer).status_code, 403)

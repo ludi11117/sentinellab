@@ -12,6 +12,9 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def run(host, stage):
+    target = ROOT / "artifacts" / ("real-model-" + stage + ".json")
+    if stage == "holdout" and target.exists():
+        raise RuntimeError("The original holdout record is archived. These cases are now seen development regressions; use the unified workspace regression template instead.")
     bundle = json.loads((ROOT / "frontend" / "ops-bundle.json").read_text(encoding="utf-8"))
     items = bundle["development_items"] if stage == "development" else bundle["items"]
     with httpx.Client(base_url=host, timeout=30) as client:
@@ -56,7 +59,6 @@ def run(host, stage):
                "score_disagreements": sum(a["score"] != b["score"] for a, b in zip(first, repeat)),
                "answer_disagreements": sum(a["output"] != b["output"] for a, b in zip(first, repeat)),
                "limitations": "Repeat at deterministic settings; not a stochastic robustness or production drift claim."}
-        target = ROOT / "artifacts" / ("real-model-" + stage + ".json")
         target.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
         print(json.dumps({"summaries": [e["summary"] for e in experiments], "gate": report.get("gate", {}).get("decision"), "report": str(target)}, indent=2), flush=True)
 

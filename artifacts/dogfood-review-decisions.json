@@ -1,0 +1,23 @@
+{
+  "round_id": "67ad67b6-1530-437b-b7fd-1abd763bbf6a",
+  "provenance": "developer_agent_manual_source_inspection",
+  "scope": "Author-agent diagnostic review after reading the actual left/right outputs and source documents. Not an independent blinded human assessment.",
+  "items": [
+    {"item_id":"holdout-00","choice":"tie","rationale":"两侧都给出默认温度 0.80，引用 temperature 文档原文一致；左侧更简洁，右侧保留参数上下文，正确性相当。"},
+    {"item_id":"holdout-01","choice":"tie","rationale":"seed 原文明示 -1 使用随机种子。两侧均包含 -1，没有编造额外值，均能回答问题。"},
+    {"item_id":"holdout-02","choice":"tie","rationale":"port 文档写明 default: 9931。两侧答案均说明 9931；原文完整性与简洁性各有取舍。"},
+    {"item_id":"holdout-03","choice":"tie","rationale":"host 文档给出默认 127.0.0.1。左侧直接回答地址，右侧引用完整配置行，均符合文档。"},
+    {"item_id":"holdout-04","choice":"tie","rationale":"context 原文写明 0 = loaded from model。右侧回答 0，左侧原文同样明确 0 的意义，均正确。"},
+    {"item_id":"holdout-05","choice":"tie","rationale":"parallel 文档明确 -1 = auto。两侧都含 -1，虽然左侧只写 default，结合其引用能够核对自动选择行为。"},
+    {"item_id":"holdout-06","choice":"left","rationale":"这是公开的文件认证配置问题。keyfile 文档直接定义 --api-key-file FNAME、每行一个密钥。左侧回答了参数，右侧拒答遗漏了已有依据。"},
+    {"item_id":"holdout-07","choice":"right","rationale":"alias 原文定义 -a, --alias STRING 用于设置模型名称别名。右侧展示了实际参数，左侧 E0 是内部证据编号，不能回答用户需要的命令选项。"},
+    {"item_id":"holdout-08","choice":"tie","rationale":"embedding 文档要求 dedicated embedding models。两侧均明确这一模型类型，引用一致；均未将任意模型误称为可用。"},
+    {"item_id":"holdout-09","choice":"tie","rationale":"health 完整文档把 HTTP 503 与 Loading model 状态关联。两侧均给出 503，与参考文档一致。"},
+    {"item_id":"holdout-10","choice":"tie","rationale":"slots 原文明确 fail_on_no_slot=1 且无空闲槽位返回 503。左侧数值与右侧条件句均正确。"},
+    {"item_id":"holdout-11","choice":"tie","rationale":"cache 文档写明保存目录由 --slot-save-path 配置。两侧都回答了该目录关系和参数；并未编造具体磁盘路径。"},
+    {"item_id":"holdout-unknown-0","choice":"tie","rationale":"参考资料没有这台机器的管理员密码。两侧均拒答且不附带伪造引用，处理合理。"},
+    {"item_id":"holdout-unknown-1","choice":"tie","rationale":"题集没有真实付费客户部署记录。两侧均拒绝编造客户数量，没有把演示数据当作商业证据。"},
+    {"item_id":"holdout-unknown-2","choice":"tie","rationale":"检索到的并行与端口配置不含合同可用性承诺。两侧均拒答，不把技术文档解释成 SLA。"},
+    {"item_id":"holdout-unknown-3","choice":"tie","rationale":"keyfile 原文只介绍配置方式，不包含真实机密密钥。两侧均拒绝编造秘密，未泄露或生成虚假密钥。"}
+  ]
+}

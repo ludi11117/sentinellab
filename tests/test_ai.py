@@ -58,6 +58,38 @@ class ProviderTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             ModelAnswer.model_validate({"answer": "x", "quote": "x", "citation": "x", "abstain": "false"})
 
+    def test_flag_formatter_preserves_raw_model_and_uses_only_selected_quote(self):
+        hits = [{"id": "keys", "body": "--api-key-file FNAME: one key per line\n--api-key KEY: inline key"}]
+        with patch("app.model_provider.httpx.post", return_value=response("Use a filename")) as post:
+            value = generate("How to load keys from a file?", hits, True, profile("llm-grounded-v3"), True)
+        self.assertEqual(value["raw_output"]["answer"], "Use a filename")
+        self.assertEqual(value["output"]["answer_transform"]["appended_flags"], ["--api-key-file"])
+        self.assertIn("--api-key-file", value["output"]["answer"])
+        self.assertEqual(value["output"]["quote"], hits[0]["body"].splitlines()[0])
+        self.assertNotIn("expected", json.dumps(post.call_args.kwargs["json"]))
+
+    def test_flag_formatter_does_not_turn_abstention_into_an_answer(self):
+        with patch("app.model_provider.httpx.post", return_value=response("invented", abstain=True)):
+            value = generate("unknown", [{"id":"x", "body":"--api-key-file"}], True, profile("llm-grounded-v3"), True)
+        self.assertEqual(value["output"]["answer"], "INSUFFICIENT_EVIDENCE")
+        self.assertEqual(value["output"]["answer_transform"]["appended_flags"], [])
+
+    def test_public_configuration_prompt_is_versioned_and_preserves_abstention(self):
+        with patch("app.model_provider.httpx.post", return_value=response("real secrets are unknown", evidence_id="NONE", abstain=True)) as post:
+            value = generate("What is our actual key?", [{"id":"x", "body":"--key KEY"}], True, profile("llm-grounded-v4"), True, True)
+        self.assertTrue(value["output"]["abstain"])
+        self.assertEqual(value["profile"]["prompt_version"], "evidence-selection-v4-public-configuration")
+        self.assertIn("not a request for an actual secret", post.call_args.kwargs["json"]["messages"][0]["content"])
+
+    def test_extractive_contract_excludes_model_paraphrase_and_keeps_original(self):
+        hits=[{"id":"x", "body":"--limit N: maximum items (default: 50)"}]
+        with patch("app.model_provider.httpx.post",return_value=response("wrong default 999")):
+            result=generate("default?",hits,True,profile("llm-grounded-v5"),public_configuration=True,extractive_answer=True)
+        self.assertEqual(result["output"]["answer"],hits[0]["body"])
+        self.assertEqual(result["raw_output"]["answer"],"wrong default 999")
+        self.assertEqual(result["output"]["answer_transform"]["original_answer"],"wrong default 999")
+        self.assertNotIn("999",result["output"]["answer"])
+
 
 class ReviewTest(unittest.TestCase):
     setUp = existing.SystemTest.setUp
@@ -107,6 +139,31 @@ class ReviewTest(unittest.TestCase):
         body = {"item_id": "0", "reviewer_name": "TEST ONLY", "choice": "neither", "rationale": "Neither is acceptable"}
         self.post("reviews/" + review["id"] + "/votes", body)
         self.post("reviews/" + review["id"] + "/votes", body, 409)
+
+    def test_developer_self_test_never_completes_human_acceptance(self):
+        base, candidate, gate = self.fixtures()
+        review = self.post("reviews", {"baseline_id": base, "candidate_id": candidate})
+        for i in range(2):
+            body = {"item_id": str(i), "reviewer_name": "DEVELOPER TEST", "reviewer_kind": "developer_agent", "choice": "tie", "rationale": "Developer checked the example source"}
+            self.post("reviews/" + review["id"] + "/votes", body)
+            self.post("reviews/" + review["id"] + "/votes", body, 409)
+        report = self.api.get("/api/public/reviews/" + review["id"] + "/summary").json()
+        self.assertEqual(report["self_reviewed_items"], 2)
+        self.assertEqual(report["reviewed_items"], 0)
+        self.assertFalse(report["complete"])
+        tasks = self.api.get("/api/public/reviews/" + review["id"] + "/tasks").json()["tasks"]
+        self.assertTrue(all(t["self_reviewed"] and not t["voted"] for t in tasks))
+        self.post("acceptances", {"gate_id": gate, "review_round_id": review["id"], "notes":"self-test cannot sign acceptance"}, 409)
+        # The same key can still submit a distinct human-review record later.
+        for i in range(2):
+            self.post("reviews/" + review["id"] + "/votes", {"item_id": str(i), "reviewer_name":"HUMAN FIXTURE", "choice":"tie", "rationale":"Isolated human fixture record"})
+        self.assertTrue(self.api.get("/api/public/reviews/" + review["id"] + "/summary").json()["complete"])
+
+    def test_legacy_pages_redirect_to_one_workspace(self):
+        for old, view in {"delivery":"setup", "releases":"compare", "evidence":"compare", "review":"review", "learn":"guide"}.items():
+            response = self.api.get("/" + old + ".html", follow_redirects=False)
+            self.assertEqual(response.status_code, 307)
+            self.assertEqual(response.headers["location"], "/#" + view)
 
     def test_human_neither_prevents_acceptance(self):
         base, candidate, gate = self.fixtures()

@@ -41,7 +41,7 @@ class NewJob(StrictModel):
 
 
 def job_json(job):
-    return {"id": job.id, "dataset_id": job.dataset_id, "revision": job.revision, "state": job.state,
+    return {"id": job.id, "request_key": job.request_key, "dataset_id": job.dataset_id, "revision": job.revision, "state": job.state,
             "attempts": job.attempts, "fence": job.fence, "completed": job.completed, "owner": job.owner,
             "lease_until_ms": job.lease_until_ms, "experiment_id": job.experiment_id, "error": job.error,
             "corpus_digest": job.spec["corpus_digest"], "pipeline_version": job.spec["pipeline_version"]}
@@ -58,7 +58,7 @@ def enqueue(payload: NewJob, db: Session = Depends(get_db)):
         from ..model_provider import profile, ready
         if not ready():
             raise HTTPException(503, "configured model is unavailable; run start-model.ps1 or configure the provider")
-        model_profile = profile()
+        model_profile = profile(payload.revision)
     digest = content_hash({"dataset": dataset.digest, "dataset_id": dataset.id, "revision": payload.revision, "corpus": corpus,
                            "pipeline_version": PIPELINE_VERSION, "model_profile": model_profile})
     existing = db.scalar(select(Job).where(Job.request_key == payload.request_key))
@@ -94,6 +94,7 @@ def list_jobs(db: Session = Depends(get_db)):
 def get_job(job_id: str, db: Session = Depends(get_db)):
     job = require(db, Job, job_id)
     return {**job_json(job), "total": len(require(db, Dataset, job.dataset_id).items),
+            "corpus": job.spec["corpus"],
             "cases": [c.result for c in db.scalars(select(CaseRun).where(CaseRun.job_id == job.id))]}
 
 

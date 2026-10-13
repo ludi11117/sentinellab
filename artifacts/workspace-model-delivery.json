@@ -1,0 +1,89 @@
+{
+  "audit_id": "8a77eb1c-9ae4-4c08-bdec-32f1b6dcf0c2",
+  "digest": "25fc5de84510bd675f01a8865b1bfd8e6f804b9193932b012f7d5f9266fc19e0",
+  "record": {
+    "customer": "工作台技术评审",
+    "workflow": "公开技术文档 · 开发回归验证 / 16题",
+    "gate_id": "9cf5ea38-0b72-4dd9-9307-4c80af7780bc",
+    "verdict": "ready-for-human-review",
+    "dataset_digest": "566832b2ff3e122a88821093992b3cea1cab27aa639c091424236694df9f41f0",
+    "revision": "llm-grounded-v5",
+    "evaluator": "evidence-v3",
+    "corpus_digest": "b871b1c5be64fc94392bf38c3b07626bc66e2c8d7379d3d2a31bdefdf6c51c32",
+    "pipeline_version": "delivery-pipeline-v5",
+    "samples": 16,
+    "groups": 16,
+    "policy": {
+      "min_samples": 10,
+      "min_quality": 0.8,
+      "max_quality_drop": 0.05,
+      "max_mean_cost": 0.02,
+      "max_p95_latency_ms": 30000,
+      "max_error_rate": 0,
+      "min_groups": 2,
+      "max_group_quality_drop": 0.2,
+      "require_holdout": false
+    },
+    "summary": {
+      "samples": 16,
+      "quality": 1,
+      "mean_cost": 0,
+      "p95_latency_ms": 2251.25,
+      "error_rate": 0
+    },
+    "checks": [
+      {
+        "name": "sample_size",
+        "actual": 16,
+        "limit": 10,
+        "passed": true
+      },
+      {
+        "name": "quality_floor",
+        "actual": 1,
+        "limit": 0.8,
+        "passed": true
+      },
+      {
+        "name": "paired_quality_lower_bound",
+        "actual": 0,
+        "limit": -0.05,
+        "passed": true
+      },
+      {
+        "name": "mean_cost",
+        "actual": 0,
+        "limit": 0.02,
+        "passed": true
+      },
+      {
+        "name": "p95_latency_ms",
+        "actual": 2251.25,
+        "limit": 30000,
+        "passed": true
+      },
+      {
+        "name": "error_rate",
+        "actual": 0,
+        "limit": 0,
+        "passed": true
+      },
+      {
+        "name": "independent_groups",
+        "actual": 16,
+        "limit": 2,
+        "passed": true
+      },
+      {
+        "name": "worst_group_quality_delta",
+        "actual": 0,
+        "limit": -0.2,
+        "passed": true
+      }
+    ],
+    "regressions": [],
+    "scope": "Dataset-based technical acceptance only. No customer sign-off, real supplier verification, model generalization or autonomous purchasing authorization."
+  },
+  "review": null,
+  "acceptances": []
+}

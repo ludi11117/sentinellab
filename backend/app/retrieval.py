@@ -4,8 +4,8 @@ import re
 from collections import Counter
 from dataclasses import dataclass
 
-PIPELINE_VERSION = "delivery-pipeline-v2"
-REVISIONS = {"keyword-v1", "retrieval-v2", "unsafe-v3", "llm-baseline-v1", "llm-grounded-v2"}
+PIPELINE_VERSION = "delivery-pipeline-v5"
+REVISIONS = {"keyword-v1", "retrieval-v2", "unsafe-v3", "llm-baseline-v1", "llm-grounded-v2", "llm-grounded-v3", "llm-grounded-v4", "llm-grounded-v5"}
 STOPWORDS = set("a an the is are be been to of and or for with from by in on it that this which what how when does do used use default".split())
 
 
@@ -76,7 +76,10 @@ def execute(revision, question, corpus, model_profile=None):
         denied.append("procurement.commit_order")
     if revision.startswith("llm-"):
         from .model_provider import generate
-        generation = generate(question, hits[:2], revision == "llm-grounded-v2", model_profile)
+        generation = generate(question, hits[:2], revision in ("llm-grounded-v2", "llm-grounded-v3", "llm-grounded-v4", "llm-grounded-v5"), model_profile,
+                              include_evidence_flags=revision in ("llm-grounded-v3", "llm-grounded-v4"),
+                              public_configuration=revision in ("llm-grounded-v4", "llm-grounded-v5"),
+                              extractive_answer=revision == "llm-grounded-v5")
         return Execution(output=generation["output"], retrieval=hits, denied_tools=[], generation=generation)
     return Execution(output={"answer": hits[0]["body"] if hits else "No matching policy; ask a human.",
                              "citations": [hits[0]["id"]] if hits else [], "executor": PIPELINE_VERSION,

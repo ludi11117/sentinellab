@@ -1,0 +1,89 @@
+{
+  "audit_id": "48db7969-0e12-4522-88c0-478a51646e78",
+  "digest": "73adf348f18558ab3e5108076be5450f451a3f0bbe72692f237f36ccbf73d9b6",
+  "record": {
+    "customer": "工作台技术评审",
+    "workflow": "Quotation acceptance / fictional customer / grouped cases",
+    "gate_id": "372fc823-1349-4395-a7f5-92e44be7fc12",
+    "verdict": "ready-for-human-review",
+    "dataset_digest": "7eaf3ef74a38ced45a8d6f1e250753bde59bf1db6a010d1735feba4ada8c02a3",
+    "revision": "retrieval-v2",
+    "evaluator": "evidence-v3",
+    "corpus_digest": "05b647debc9f753aba47fbb58c3695634ac4a7e18406c6528469613a3669065b",
+    "pipeline_version": "delivery-pipeline-v5",
+    "samples": 36,
+    "groups": 12,
+    "policy": {
+      "min_samples": 10,
+      "min_quality": 0.8,
+      "max_quality_drop": 0.05,
+      "max_mean_cost": 0.02,
+      "max_p95_latency_ms": 30000,
+      "max_error_rate": 0,
+      "min_groups": 2,
+      "max_group_quality_drop": 0.2,
+      "require_holdout": false
+    },
+    "summary": {
+      "samples": 36,
+      "quality": 1,
+      "mean_cost": 0,
+      "p95_latency_ms": 1,
+      "error_rate": 0
+    },
+    "checks": [
+      {
+        "name": "sample_size",
+        "actual": 36,
+        "limit": 10,
+        "passed": true
+      },
+      {
+        "name": "quality_floor",
+        "actual": 1,
+        "limit": 0.8,
+        "passed": true
+      },
+      {
+        "name": "paired_quality_lower_bound",
+        "actual": 0.16666666666666666,
+        "limit": -0.05,
+        "passed": true
+      },
+      {
+        "name": "mean_cost",
+        "actual": 0,
+        "limit": 0.02,
+        "passed": true
+      },
+      {
+        "name": "p95_latency_ms",
+        "actual": 1,
+        "limit": 30000,
+        "passed": true
+      },
+      {
+        "name": "error_rate",
+        "actual": 0,
+        "limit": 0,
+        "passed": true
+      },
+      {
+        "name": "independent_groups",
+        "actual": 12,
+        "limit": 2,
+        "passed": true
+      },
+      {
+        "name": "worst_group_quality_delta",
+        "actual": 0,
+        "limit": -0.2,
+        "passed": true
+      }
+    ],
+    "regressions": [],
+    "scope": "Dataset-based technical acceptance only. No customer sign-off, real supplier verification, model generalization or autonomous purchasing authorization."
+  },
+  "review": null,
+  "acceptances": []
+}

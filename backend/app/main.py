@@ -1,13 +1,15 @@
 from contextlib import asynccontextmanager
 from pathlib import Path
 
-from fastapi import FastAPI
+from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+from fastapi.responses import RedirectResponse
 
 from . import models  # noqa: F401  (register ORM models before create_all)
 from .db import Base, engine
 from .routers import deliveries, evaluations, evidence, ingestion, jobs, metrics, projects, reviews, traces
+from .security import Principal, principal
 
 
 @asynccontextmanager
@@ -16,7 +18,7 @@ async def lifespan(app: FastAPI):
     yield
 
 
-app = FastAPI(title="SentinelLab — Agent Delivery Verification", version="0.4.0", lifespan=lifespan)
+app = FastAPI(title="SentinelLab — Agent Delivery Verification", version="0.5.0", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
@@ -42,5 +44,21 @@ def health() -> dict:
 
 
 FRONTEND_DIR = Path(__file__).resolve().parents[2] / "frontend"
+
+
+@app.get("/api/public/context")
+def context(identity: Principal = Depends(principal)):
+    return {"project_id": identity.project_id, "role": identity.role}
+
+
+def legacy_redirect(view):
+    def redirect():
+        return RedirectResponse("/#" + view, status_code=307)
+    return redirect
+
+
+for filename, view in {"delivery": "setup", "releases": "compare", "evidence": "compare", "review": "review", "learn": "guide"}.items():
+    app.add_api_route("/" + filename + ".html", legacy_redirect(view), include_in_schema=False)
+
 if FRONTEND_DIR.exists():
     app.mount("/", StaticFiles(directory=str(FRONTEND_DIR), html=True), name="frontend")

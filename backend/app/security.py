@@ -42,7 +42,8 @@ def principal(request: Request):
         raise HTTPException(401, "project key required")
     path = request.url.path
     review_path = bool(re.fullmatch(r"/api/public/reviews(?:/[a-f0-9-]{36}(?:/tasks|/votes)?)?", path))
-    if identity.role == "reviewer" and (not review_path or (request.method not in ("GET", "HEAD", "OPTIONS") and not path.endswith("/votes"))):
+    context_path = path == "/api/public/context" and request.method == "GET"
+    if identity.role == "reviewer" and not context_path and (not review_path or (request.method not in ("GET", "HEAD", "OPTIONS") and not path.endswith("/votes"))):
         raise HTTPException(403, "reviewer key is restricted to blinded review tasks and votes")
     if request.method not in ("GET", "HEAD", "OPTIONS") and identity.role != "writer" and not (identity.role == "reviewer" and path.endswith("/votes")):
         raise HTTPException(403, "reader key cannot modify project data")

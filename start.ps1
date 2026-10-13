@@ -43,4 +43,4 @@ if ($SeedDemo) {
     & $pythonPath "$projectRoot\examples\release_demo.py" --host "http://127.0.0.1:$Port" --output "$projectRoot\artifacts\demo-report.json"
     if ($LASTEXITCODE -ne 0) { throw 'Demo seed failed; server remains running' }
 }
-Write-Output "SentinelLab: http://127.0.0.1:$Port/releases.html (PID $($process.Id))"
+Write-Output "SentinelLab: http://127.0.0.1:$Port/ (PID $($process.Id))"

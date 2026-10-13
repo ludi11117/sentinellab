@@ -210,6 +210,19 @@ class ReviewVote(Base):
     rationale: Mapped[str] = mapped_column(Text)
 
 
+class SelfReviewVote(Base):
+    """Developer/agent dogfooding never satisfies human acceptance coverage."""
+    __tablename__ = "self_review_votes"
+    __table_args__ = (UniqueConstraint("round_id", "item_id", "reviewer_key_id", name="uq_self_review_vote"),)
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=_uuid)
+    round_id: Mapped[str] = mapped_column(ForeignKey("review_rounds.id"))
+    item_id: Mapped[str] = mapped_column(String(64))
+    reviewer_key_id: Mapped[str] = mapped_column(String(36))
+    reviewer_name: Mapped[str] = mapped_column(String(255))
+    choice: Mapped[str] = mapped_column(String(16))
+    rationale: Mapped[str] = mapped_column(Text)
+
+
 class Acceptance(Base):
     __tablename__ = "acceptances"
     id: Mapped[str] = mapped_column(String(36), primary_key=True, default=_uuid)

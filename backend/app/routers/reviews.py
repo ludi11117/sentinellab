@@ -10,7 +10,7 @@ from sqlalchemy.orm import Session
 
 from ..db import get_db
 from ..evaluation import content_hash
-from ..models import Acceptance, AuditEvent, Experiment, GateReport, Job, ReviewRound, ReviewVote
+from ..models import Acceptance, AuditEvent, Experiment, GateReport, Job, ReviewRound, ReviewVote, SelfReviewVote
 from ..privacy import redact
 from ..retrieval import BM25
 from .evaluations import StrictModel, require
@@ -28,6 +28,7 @@ class Vote(StrictModel):
     reviewer_name: str = Field(min_length=1, max_length=255)
     choice: Literal["left", "right", "tie", "neither"]
     rationale: str = Field(min_length=5, max_length=3000)
+    reviewer_kind: Literal["human", "developer_agent"] = "human"
 
 
 class Signoff(StrictModel):
@@ -59,7 +60,9 @@ def create_round(payload: NewRound, db: Session = Depends(get_db)):
 
 @router.get("/reviews")
 def list_rounds(db: Session = Depends(get_db)):
-    return [public_round(r) for r in db.scalars(select(ReviewRound).order_by(ReviewRound.created_at.desc()).limit(100))]
+    writer = getattr(db.info.get("principal"), "role", "writer") == "writer"
+    return [{**public_round(r), **({"baseline_id": r.baseline_id, "candidate_id": r.candidate_id} if writer else {})}
+            for r in db.scalars(select(ReviewRound).order_by(ReviewRound.created_at.desc()).limit(100))]
 
 
 @router.get("/reviews/{round_id}/tasks")
@@ -68,7 +71,11 @@ def tasks(round_id: str, db: Session = Depends(get_db)):
     base = require(db, Experiment, round.baseline_id)
     candidate = require(db, Experiment, round.candidate_id)
     base_map, cand_map = ({r["item_id"]: r for r in e.results} for e in (base, candidate))
-    own_votes = {v.item_id for v in db.scalars(select(ReviewVote).where(ReviewVote.round_id == round.id, ReviewVote.reviewer_key_id == identity(db)))}
+    def own_records(model, kind):
+        return {v.item_id: {"choice": v.choice, "rationale": v.rationale, "reviewer_name": v.reviewer_name, "reviewer_kind": kind}
+                for v in db.scalars(select(model).where(model.round_id == round.id, model.reviewer_key_id == identity(db)))}
+    own_votes = own_records(ReviewVote, "human")
+    self_votes = own_records(SelfReviewVote, "developer_agent")
     jobs = [db.scalar(select(Job).where(Job.experiment_id == e.id)) for e in (base, candidate)]
 
     def answer(result, job):
@@ -82,7 +89,9 @@ def tasks(round_id: str, db: Session = Depends(get_db)):
         pair = [answer(base_map[item_id], jobs[0]), answer(cand_map[item_id], jobs[1])]
         if swap:
             pair.reverse()
-        result.append({"item_id": item_id, "input": base_map[item_id]["input"], "left": pair[0], "right": pair[1], "voted": item_id in own_votes})
+        result.append({"item_id": item_id, "input": base_map[item_id]["input"], "left": pair[0], "right": pair[1],
+                       "voted": item_id in own_votes, "self_reviewed": item_id in self_votes,
+                       "human_vote": own_votes.get(item_id), "self_vote": self_votes.get(item_id)})
     corpus = jobs[1].spec["corpus"] if jobs[1] else []
     for item in result:
         hits = BM25(corpus).search(item["input"].get("question", ""), 2) if corpus else []
@@ -95,7 +104,8 @@ def vote(round_id: str, payload: Vote, db: Session = Depends(get_db)):
     round = require(db, ReviewRound, round_id)
     if payload.item_id not in round.ordering:
         raise HTTPException(422, "item does not belong to this review round")
-    record = ReviewVote(round_id=round.id, item_id=payload.item_id, reviewer_key_id=identity(db),
+    vote_model = SelfReviewVote if payload.reviewer_kind == "developer_agent" else ReviewVote
+    record = vote_model(round_id=round.id, item_id=payload.item_id, reviewer_key_id=identity(db),
                         reviewer_name=payload.reviewer_name, choice=payload.choice, rationale=redact(payload.rationale))
     db.add(record)
     try:
@@ -103,11 +113,12 @@ def vote(round_id: str, payload: Vote, db: Session = Depends(get_db)):
     except IntegrityError:
         db.rollback()
         raise HTTPException(409, "this key already submitted an immutable vote for this item")
-    return {"id": record.id, "recorded": True}
+    return {"id": record.id, "recorded": True, "reviewer_kind": payload.reviewer_kind}
 
 
 def summary(db, round):
     votes = list(db.scalars(select(ReviewVote).where(ReviewVote.round_id == round.id)))
+    self_votes = list(db.scalars(select(SelfReviewVote).where(SelfReviewVote.round_id == round.id)))
     counts = Counter()
     for vote in votes:
         if vote.choice in ("tie", "neither"):
@@ -117,7 +128,8 @@ def summary(db, round):
             counts["candidate" if vote.choice == candidate_side else "baseline"] += 1
     return {"round_id": round.id, "samples": len(round.ordering), "reviewed_items": len({v.item_id for v in votes}),
             "reviewer_keys": len({v.reviewer_key_id for v in votes}), "votes": len(votes), "preferences": dict(counts),
-            "complete": set(round.ordering) == {v.item_id for v in votes}}
+            "complete": set(round.ordering) == {v.item_id for v in votes},
+            "developer_agent_votes": len(self_votes), "self_reviewed_items": len({v.item_id for v in self_votes})}
 
 
 @router.get("/reviews/{round_id}/summary")

@@ -4,11 +4,24 @@
 
 一个可运行的后端 / AI 平台 / FDE 工程作品：导入客户资料和验收问题，运行多个助手版本，检查答案来源与工具权限，对照质量变化，再生成交付验收记录。后台进程崩溃时可接管任务，并拒绝过期进程提交结果。
 
-当前版本 **0.4**。已接入真实 Qwen3 模型、真实公开运维文档、留出集对照评测与人工盲评。备件资料仍为虚构业务示例，没有实际采购、客户收益或生产规模证明。
+当前版本 **0.5**。一个工作台完成“资料 → 运行 → 对比 → 评审”，已接入真实 Qwen3 模型、公开部署文档、可恢复任务与人工技术评审。采购资料是虚构流程模板，没有实际采购、客户收益或生产规模证明。
 
-![交付验证台](artifacts/delivery-console.png)
+![统一工作台](artifacts/workspace-setup.png)
 
-## 0.4 新增的实测证据
+## 0.5：自己使用后修复
+
+- 六个独立 HTML 收拢为 **一个 `index.html`**，中文模板卡片、资料预览、四步导航和下一步按钮；旧链接自动跳转。
+- 提交瞬间刷新也能恢复同一任务；按项目保留题集、实验、门禁和评审状态；对比只显示兼容候选。
+- 逐题答案、原文、失败原因和原始执行记录同屏查看；评审选择与理由不再被重载清空，刷新恢复草稿。
+- 模型修复版使用“模型选依据、原文作答”的明确契约，保存原始模型草稿；区分公开认证参数与真实秘密。
+- 当前 16 道**开发回归题**：原版 **14/16 → 修复版 16/16**，自动回归检查通过。旧的独立留出 `block` 和两份中间失败均保留。
+- 已逐题核对并提交 **16/16 开发者自测**；人工覆盖 **0/16**，自测不能满足签署条件；**56 项自动测试通过**。
+
+这是作者 Agent 的实际使用与诊断，不是独立真人盲评或客户验收。原文问答的规则通过率不等于自由生成文本准确率。方法、真实输出和发现的问题见 [自测与修复记录](docs/dogfood.md)。
+
+![回归对照](artifacts/workspace-model-compare.png)
+
+## 保留的 0.4 首次留出证据
 
 - 真实 Qwen3-4B-Q4_K_M + llama.cpp Vulkan 推理，模型 / runtime 与上游 SHA256 校验，权重与缓存全部在 D 盘。
 - 对真实 llama-server 文档建立 12 条开发题与 16 条冻结留出题，标签不进入模型请求。
@@ -30,15 +43,15 @@ cd D:\agent-runtime
 
 默认启动 API + 两个独立后台 worker，均在 D 盘项目中写数据；首次启动创建项目虚拟环境，安装 `backend/requirements.lock.txt`。只监听 `127.0.0.1`。
 
-1. 打开 <http://127.0.0.1:8000/delivery.html>，加载“虚构备件示例”或“真实运维文档 / 留出集”。
-2. 备件示例运行关键词 / 检索 / 故障版；公开文档可运行真实模型基础版 / 证据约束版，复用同一题集。
-3. 查看逐题答案、文档来源、失败检查项及 Trace 链路。
-4. 选择关键词版为基线、检索版为候选，生成门禁和交付 JSON。
-5. 再比较检索版与故障版：越权操作计划被运行时拒绝，错误版本被门禁拦截。
+1. 打开 <http://127.0.0.1:8000/>，选择“技术文档问答验收”或“采购政策流程演示”，先看中文问题与资料预览。
+2. 确认资料，在同一题集上分别启动原版和改进版；任务后台执行，刷新可恢复。
+3. “检查差异”核验标准，点“看证据”查看答案、原文、失败原因与 Trace；可下载交付 JSON。
+4. “评审交付”隐藏版本名称比较答案，明确选择人工技术评审或开发者自测。自测不计入人审。
+5. 自动检查与完整人工评审共同支持候选后，才能记录技术验收。快速演示也可运行权限失败版，查看越权计划被拒绝。
 
 真实模型需先执行 `.\start-model.ps1`；首次会下载官方权重和程序到 D 盘，Vulkan 版需要可用 GPU，也可显式选择 CPU runtime。
 
-通俗讲解：<http://127.0.0.1:8000/learn.html>。实测证据：<http://127.0.0.1:8000/evidence.html>。人工评审：<http://127.0.0.1:8000/review.html>。详细阈值：<http://127.0.0.1:8000/releases.html>。Trace：<http://127.0.0.1:8000/>。OpenAPI：<http://127.0.0.1:8000/docs>。
+准备资料：<http://127.0.0.1:8000/#setup>。运行：<http://127.0.0.1:8000/#run>。比较：<http://127.0.0.1:8000/#compare>。评审：<http://127.0.0.1:8000/#review>。通俗讲解：<http://127.0.0.1:8000/#guide>。OpenAPI：<http://127.0.0.1:8000/docs>。旧 HTML 链接由 API 重定向，目录只保留一个 HTML。
 
 ```powershell
 # 命令行生成完整示例和原始报告
@@ -97,9 +110,9 @@ flowchart LR
 .\check.ps1
 ```
 
-**50 项自动测试通过**：新增模型证据约束、配置漂移、长 RPC 心跳、取消、盲评权限、投票不可变、签署条件与留出集 / 未知成本检查。原有覆盖包括：项目隔离 / 只读 / 撤销、8 线程竞争领取、过期 worker、取消、重试耗尽、检查点事务回滚、恢复去重、请求幂等、引用检查、相关问法分组、少数类别退化，以及原有 SDK / 摄入 / Trace 测试。
+**56 项自动测试通过**：新增原文作答契约、草稿保留、自测不计入人审、旧页面跳转与 reviewer 上下文权限；原有覆盖模型证据约束、配置漂移、长 RPC 心跳、项目隔离、只读 / 撤销、8 线程竞争、过期 worker、取消、事务回滚、恢复去重、请求幂等、分组退步、签署条件与 SDK 摄入。
 
-浏览器验证通过：真实文档导入、模型实测证据、版本隐藏的人审任务（未投假票），以及资料加载、真实异步执行、36 条引用结果、门禁、交付下载、手机布局、通俗讲解互动，零页面脚本错误。复现需要 Playwright 和 Chromium：
+浏览器验证通过：模板与自定义文件预览、真实后台执行、提交响应中断后恢复、兼容版本过滤、证据定位、下载、权限失败拦截、评审草稿、项目权限、手机布局、逐题开发者自测与拒绝人工签署，零页面脚本错误。没有提交真人票。复现需要 Playwright 和 Chromium：
 
 ```powershell
 $env:npm_config_cache='D:\CodexWork\cache\npm'
@@ -108,9 +121,11 @@ npm install --prefix .\tooling
 & .\tooling\node_modules\.bin\playwright.cmd install chromium
 node .\tests\browser_delivery.cjs
 node .\tests\browser_ai.cjs
+node .\tests\browser_permissions.cjs
+node .\tests\browser_forms.cjs
 ```
 
-可用 `CHROME_EXECUTABLE` 指定已有 Chromium、`TEST_HOST` 指定服务。`browser_smoke.cjs` 是历史 Trace / 门禁流程的补充检查，执行前需运行 `release_demo.py`。
+可用 `CHROME_EXECUTABLE` 指定已有 Chromium、`PLAYWRIGHT_MODULE` 指定已有 Playwright、`TEST_HOST` 指定服务。`browser_smoke.cjs` 检查统一入口、兼容跳转与手机布局，无需预先运行演示。`browser_ai.cjs` 需要本地真实模型；表单检查需要先运行快速流程。开发者自测重放需核对对应轮次的实际左右答案，详见 [自测文档](docs/dogfood.md)。
 
 0.2 版本本机短时摄入烟测记录仍保留于 [benchmark.json](artifacts/benchmark.json)：Windows 11 / Python 3.13 / SQLite / 4 并发 / 200 请求 / 每请求 3 事件，600 事件接受、HTTP 错误 0，约 66 请求/s。**该数据未用于宣称 0.3 容量或生产吞吐。**
 
@@ -136,6 +151,7 @@ DELETE /api/admin/keys/{key_id}
 
 | 路径 | 说明 |
 |---|---|
+| `GET /api/public/context` | 当前密钥对应的项目与角色，不返回凭证 |
 | `POST /api/public/ingestion` | 严格事件校验、事务回执、稳定事件 ID 去重 |
 | `GET /api/public/traces`、`/{id}` | 执行链路、Span 树、列表过滤 |
 | `GET /api/public/metrics/summary`、`timeline` | 当前项目运行指标 |
@@ -148,17 +164,19 @@ DELETE /api/admin/keys/{key_id}
 | `GET /api/public/audit` | 任务领取、重试、检查点、发布和交付事件 |
 | `GET /api/public/model-status`、`evidence` | 真实模型可用性、实测结果与失败证据 |
 | `POST /api/public/reviews`、`GET /reviews/{id}/tasks` | 创建与读取对照盲评 |
-| `POST /api/public/reviews/{id}/votes` | 当前访问密钥提交不可修改的投票 |
+| `POST /api/public/reviews/{id}/votes` | 不可修改投票；`reviewer_kind` 区分 human 与 developer_agent，独立存表 |
 | `GET /api/public/reviews/{id}/summary` | writer 查看评审汇总 |
 | `POST /api/public/acceptances`、`GET /acceptances` | 自动门禁与完整人审共同约束的技术验收 |
 
-提交任务要求稳定的 `request_key`。重复同内容返回原任务，不同内容返回 409。只执行预注册 `keyword-v1` / `retrieval-v2` / `unsafe-v3` / `llm-baseline-v1` / `llm-grounded-v2`，不执行上传脚本。每次任务保存文档快照与实现版本；不匹配的 worker 拒绝执行。
+提交任务要求稳定的 `request_key`。重复同内容返回原任务，不同内容返回 409。只执行预注册 `keyword-v1` / `retrieval-v2` / `unsafe-v3` / `llm-baseline-v1` / `llm-grounded-v2` 至 `v5`，不执行上传脚本。中间版用于保留诊断；工作台默认对比 v2 与原文优先 v5。每次任务保存文档快照、prompt 和答案处理契约；不匹配的 worker 拒绝执行。
 
 ## 评测与统计
 
 `evidence-v3` 检查答案 exact / contains（NFKC、casefold）、必需工具成功、禁止工具无尝试、Trace 成功，并可要求正确来源文档、原文证据和拒答。可要求只使用 holdout 样本。整体得分与分组得分都保存快照。
 
 默认：至少 10 条题、至少 2 个问题组、正确率 ≥ 90%、分组配对 bootstrap 单侧 95% 下界 ≥ -5 个百分点、最差问题组下降 ≤ 20 个百分点、平均成本 ≤ $0.02、P95 ≤ 3000ms、执行错误率为 0。按问题组重采样 2,000 次，种子 42；未指定 group 时每个 item 自成组，调用者需要正确标注相关问题。
+
+上述为 API 默认政策。工作台模板的开发回归政策为 80% 通过率、P95 30 秒，其余主要约束相同，不要求 holdout；可在比较前查看并调整，历史报告保存当时政策。它不是客户 SLA，不能与 0.4 原始留出报告混为一次实验。
 
 引用命中不等于事实性或语义蕴含验证；词面规则不适合所有任务，bootstrap 不会把非代表性数据变成生产证据。数据集规模、内容、独立性和验收阈值都需结合真实业务确定。
 
@@ -181,7 +199,7 @@ CLI `0` 表示放行，`1` 表示拦截；API 或网络错误也为非零。`.gi
 - API 的 50 个待处理任务限制是基本 admission check，并发提交时不保证精确上限；不是强配额和计费机制。
 - worker 按项目轮询，单个领取按创建时间排序。没有实现抢占公平调度、大任务分片或 provider 级并发控制。
 - SDK 至少一次投递；稳定事件 ID 才能服务器去重。永久 4xx 保留死信，`flush()` 报错；未实现一键死信重放。Outbox 保存原始载荷，服务端脱敏不是完整 DLP。
-- 当前表结构通过 additive bootstrap 创建，0.3 新表不修改旧 Trace 表；还没有完整 Alembic 迁移链。0.4 的人审与验收采用新增表，保留旧数据。
+- 当前表结构通过 additive bootstrap 创建，还没有完整 Alembic 迁移链。0.4 人审 / 验收与 0.5 自测均采用新增表，保留旧数据。
 - 项目隔离防止 API 跨项目访问，不能防御拥有宿主机文件权限的攻击者；没有磁盘加密、SSO 和 TLS。
 
 深入设计：[可靠执行与交付设计](docs/design.md)。通俗解释与简历答辩：[从零理解项目](docs/portfolio.md)。
