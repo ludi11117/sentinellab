@@ -21,6 +21,8 @@ class Document(StrictModel):
     id: str = Field(min_length=1, max_length=128)
     title: str = Field(min_length=1, max_length=1000)
     body: str = Field(min_length=1, max_length=20000)
+    source: str | None = Field(None, max_length=2000)
+    source_sha256: str | None = Field(None, pattern=r"^[a-f0-9]{64}$")
 
 
 class NewJob(StrictModel):
@@ -51,7 +53,14 @@ def enqueue(payload: NewJob, db: Session = Depends(get_db)):
     if any(not isinstance(i["input"], dict) or not isinstance(i["input"].get("question"), str) for i in dataset.items):
         raise HTTPException(422, "registered pipeline requires input.question string")
     corpus = redact([d.model_dump() for d in payload.corpus])
-    digest = content_hash({"dataset": dataset.digest, "dataset_id": dataset.id, "revision": payload.revision, "corpus": corpus, "pipeline_version": PIPELINE_VERSION})
+    model_profile = None
+    if payload.revision.startswith("llm-"):
+        from ..model_provider import profile, ready
+        if not ready():
+            raise HTTPException(503, "configured model is unavailable; run start-model.ps1 or configure the provider")
+        model_profile = profile()
+    digest = content_hash({"dataset": dataset.digest, "dataset_id": dataset.id, "revision": payload.revision, "corpus": corpus,
+                           "pipeline_version": PIPELINE_VERSION, "model_profile": model_profile})
     existing = db.scalar(select(Job).where(Job.request_key == payload.request_key))
     if existing:
         if existing.request_digest != digest:
@@ -60,7 +69,8 @@ def enqueue(payload: NewJob, db: Session = Depends(get_db)):
     if db.scalar(select(func.count()).select_from(Job).where(Job.state.in_(["queued", "running"]))) >= 50:
         raise HTTPException(429, "project job backlog is full; retry later")
     job = Job(id=str(uuid.uuid4()), request_key=payload.request_key, request_digest=digest, dataset_id=dataset.id,
-              revision=payload.revision, spec={"corpus": corpus, "corpus_digest": content_hash(corpus), "pipeline_version": PIPELINE_VERSION})
+              revision=payload.revision, spec={"corpus": corpus, "corpus_digest": content_hash(corpus), "pipeline_version": PIPELINE_VERSION,
+                                             "model_profile": model_profile})
     db.add(job)
     db.add(AuditEvent(job_id=job.id, action="job.enqueued", detail={"revision": payload.revision, "dataset_digest": dataset.digest}))
     try:
@@ -99,3 +109,9 @@ def audit(job_id: str | None = None, db: Session = Depends(get_db)):
     if job_id:
         query = query.where(AuditEvent.job_id == job_id)
     return [{"id": e.id, "job_id": e.job_id, "action": e.action, "detail": e.detail} for e in db.scalars(query)]
+
+
+@router.get("/model-status")
+def model_status(db: Session = Depends(get_db)):
+    from ..model_provider import profile, ready
+    return {"ready": ready(), "profile": profile()}

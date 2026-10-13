@@ -18,7 +18,7 @@ class NewProject(BaseModel):
 
 
 class NewKey(BaseModel):
-    role: Literal["reader", "writer"] = "writer"
+    role: Literal["reader", "writer", "reviewer"] = "writer"
 
 
 def issue_key(db, project_id, role):

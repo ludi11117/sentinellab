@@ -187,3 +187,33 @@ class AuditEvent(Base):
     action: Mapped[str] = mapped_column(String(64))
     detail: Mapped[dict] = mapped_column(JSONType)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+
+
+class ReviewRound(Base):
+    __tablename__ = "review_rounds"
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=_uuid)
+    baseline_id: Mapped[str] = mapped_column(ForeignKey("experiments.id"))
+    candidate_id: Mapped[str] = mapped_column(ForeignKey("experiments.id"))
+    ordering: Mapped[dict] = mapped_column(JSONType)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+
+
+class ReviewVote(Base):
+    __tablename__ = "review_votes"
+    __table_args__ = (UniqueConstraint("round_id", "item_id", "reviewer_key_id", name="uq_review_vote"),)
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=_uuid)
+    round_id: Mapped[str] = mapped_column(ForeignKey("review_rounds.id"))
+    item_id: Mapped[str] = mapped_column(String(64))
+    reviewer_key_id: Mapped[str] = mapped_column(String(36))
+    reviewer_name: Mapped[str] = mapped_column(String(255))
+    choice: Mapped[str] = mapped_column(String(16))
+    rationale: Mapped[str] = mapped_column(Text)
+
+
+class Acceptance(Base):
+    __tablename__ = "acceptances"
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=_uuid)
+    gate_id: Mapped[str] = mapped_column(ForeignKey("gate_reports.id"))
+    review_round_id: Mapped[str] = mapped_column(ForeignKey("review_rounds.id"))
+    record: Mapped[dict] = mapped_column(JSONType)
+    digest: Mapped[str] = mapped_column(String(64))

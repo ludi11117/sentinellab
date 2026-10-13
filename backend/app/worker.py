@@ -3,6 +3,7 @@ import argparse
 import os
 import time
 import uuid
+import threading
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -17,19 +18,57 @@ from .projects import project_engine
 from .retrieval import PIPELINE_VERSION, execute
 
 
+class LeaseKeeper:
+    """Keep ownership during long model RPCs; cannot revive expired/cancelled fences."""
+    def __init__(self, engine, lease, lease_ms=10000, interval=2):
+        self.engine, self.lease = engine, lease
+        self.lease_ms, self.interval = lease_ms, interval
+        self.stop = threading.Event()
+        self.lost = threading.Event()
+        self.thread = threading.Thread(target=self._run, daemon=True)
+
+    def _run(self):
+        while not self.stop.wait(self.interval):
+            try:
+                if not heartbeat(self.engine, self.lease, self.lease_ms):
+                    self.lost.set()
+                    return
+            except Exception:
+                self.lost.set()
+                return
+
+    def __enter__(self):
+        self.thread.start()
+        return self
+
+    def __exit__(self, *args):
+        self.stop.set()
+        self.thread.join(timeout=16)
+        if self.lost.is_set() and args[0] is None:
+            raise LeaseLost("ownership lost during model call; discard returned response")
+
+
 def execute_case(engine, lease, item):
     start = datetime.now(timezone.utc)
     tick = time.perf_counter()
-    execution = execute(lease.revision, item["input"]["question"], lease.spec["corpus"])
+    with LeaseKeeper(engine, lease):
+        execution = execute(lease.revision, item["input"]["question"], lease.spec["corpus"], lease.spec.get("model_profile"))
     end = datetime.now(timezone.utc)
     duration = max(1, round((time.perf_counter() - tick) * 1000))
 
     def write(db):
+        generation = execution.generation
+        usage = generation.get("usage", {}) if generation else {}
+        prompt_tokens = usage.get("prompt_tokens", 0)
+        completion_tokens = usage.get("completion_tokens", 0)
         tid = str(uuid.uuid5(uuid.UUID(lease.job_id), item["id"]))
         trace = Trace(id=tid, name="delivery-evaluation", input=item["input"], output=execution.output,
                       status="error" if execution.denied_tools else "success", start_time=start, end_time=end,
-                      latency_ms=duration, total_cost=0, prompt_tokens=0, completion_tokens=0, total_tokens=0,
-                      meta={"job_id": lease.job_id, "revision": lease.revision, "executor": lease.spec["pipeline_version"], "synthetic": False, "llm_calls": 0})
+                      latency_ms=duration, total_cost=0, prompt_tokens=prompt_tokens, completion_tokens=completion_tokens,
+                      total_tokens=usage.get("total_tokens", prompt_tokens + completion_tokens),
+                      meta={"job_id": lease.job_id, "revision": lease.revision, "executor": lease.spec["pipeline_version"], "synthetic": False,
+                            "llm_calls": int(generation is not None), "provider": generation.get("profile") if generation else None,
+                            "cost_basis": generation.get("cost_basis") if generation else "no_model"})
         db.add(trace)
         db.flush()
         root = Span(id=str(uuid.uuid4()), trace_id=tid, name="quotation-agent", type="chain", status=trace.status,
@@ -37,6 +76,13 @@ def execute_case(engine, lease, item):
         retrieval = Span(id=str(uuid.uuid4()), trace_id=tid, parent_span_id=root.id, name="knowledge.search", type="tool",
                          status="success", start_time=start, end_time=end, latency_ms=duration, output={"hits": execution.retrieval})
         spans = [root, retrieval]
+        if generation:
+            spans.append(Span(id=str(uuid.uuid4()), trace_id=tid, parent_span_id=root.id, name="model.answer", type="generation",
+                              model=generation["profile"]["model"], model_params=generation["profile"], status="success",
+                              start_time=start, end_time=end, latency_ms=generation["latency_ms"], prompt_tokens=prompt_tokens,
+                              completion_tokens=completion_tokens, total_tokens=trace.total_tokens,
+                              output=generation["raw_output"], meta={"request_digest": generation["request_digest"],
+                              "finish_reason": generation["finish_reason"], "response_id": generation["response_id"]}))
         for name in execution.denied_tools:
             spans.append(Span(id=str(uuid.uuid4()), trace_id=tid, parent_span_id=root.id, name=name, type="tool", status="error",
                               start_time=end, end_time=end, latency_ms=0, error="runtime policy denied execution; no external side effect", meta={"executed": False, "policy": "read-and-draft-only"}))

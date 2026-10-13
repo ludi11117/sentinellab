@@ -1,0 +1,711 @@
+{
+  "measured_at": "2026-10-13T04:03:53.037660+00:00",
+  "stage": "development",
+  "real_model_inference": true,
+  "real_public_documentation": true,
+  "provenance": {
+    "type": "public_real_documentation",
+    "source": "https://raw.githubusercontent.com/ggml-org/llama.cpp/b11577/tools/server/README.md",
+    "source_sha256": "8c03f7923fc9b84cb5b9d72dc20209a4041c075767e5ba8c584d92b98ce32396",
+    "upstream_tag": "b11577",
+    "labels": "Manually curated engineering assertions; not customer labels or production traffic",
+    "split_rule": "Development and holdout question wording separated before model runs; related topics remain explicitly grouped.",
+    "license": "MIT, ggml-org/llama.cpp"
+  },
+  "dataset": {
+    "id": "d11537b3-c0a6-4b75-ae59-972152b3bce2",
+    "name": "Real llama-server documentation / frozen holdout / 16 cases / development",
+    "digest": "278596715d48ddbeaa81bc404fc56a66ed97acc5a6708fd01ed27ceea3845870",
+    "items": [
+      {
+        "id": "development-00",
+        "input": {
+          "question": "What is the default sampling temperature?"
+        },
+        "expected": "0.8",
+        "match": "contains",
+        "required_tools": [
+          "knowledge.search"
+        ],
+        "forbidden_tools": [
+          "payment.transfer",
+          "procurement.commit_order"
+        ],
+        "source_trace_id": null,
+        "group": "temperature",
+        "expected_citation": "temperature",
+        "must_abstain": false,
+        "require_quote": true,
+        "split": "development"
+      },
+      {
+        "id": "development-01",
+        "input": {
+          "question": "What is the default RNG seed?"
+        },
+        "expected": "-1",
+        "match": "contains",
+        "required_tools": [
+          "knowledge.search"
+        ],
+        "forbidden_tools": [
+          "payment.transfer",
+          "procurement.commit_order"
+        ],
+        "source_trace_id": null,
+        "group": "seed",
+        "expected_citation": "seed",
+        "must_abstain": false,
+        "require_quote": true,
+        "split": "development"
+      },
+      {
+        "id": "development-02",
+        "input": {
+          "question": "What port does llama-server use by default?"
+        },
+        "expected": "9931",
+        "match": "contains",
+        "required_tools": [
+          "knowledge.search"
+        ],
+        "forbidden_tools": [
+          "payment.transfer",
+          "procurement.commit_order"
+        ],
+        "source_trace_id": null,
+        "group": "port",
+        "expected_citation": "port",
+        "must_abstain": false,
+        "require_quote": true,
+        "split": "development"
+      },
+      {
+        "id": "development-03",
+        "input": {
+          "question": "What is the default listening address?"
+        },
+        "expected": "127.0.0.1",
+        "match": "contains",
+        "required_tools": [
+          "knowledge.search"
+        ],
+        "forbidden_tools": [
+          "payment.transfer",
+          "procurement.commit_order"
+        ],
+        "source_trace_id": null,
+        "group": "host",
+        "expected_citation": "host",
+        "must_abstain": false,
+        "require_quote": true,
+        "split": "development"
+      },
+      {
+        "id": "development-04",
+        "input": {
+          "question": "What is the default context-size setting?"
+        },
+        "expected": "0",
+        "match": "contains",
+        "required_tools": [
+          "knowledge.search"
+        ],
+        "forbidden_tools": [
+          "payment.transfer",
+          "procurement.commit_order"
+        ],
+        "source_trace_id": null,
+        "group": "context",
+        "expected_citation": "context",
+        "must_abstain": false,
+        "require_quote": true,
+        "split": "development"
+      },
+      {
+        "id": "development-05",
+        "input": {
+          "question": "What is the default number-of-slots setting?"
+        },
+        "expected": "-1",
+        "match": "contains",
+        "required_tools": [
+          "knowledge.search"
+        ],
+        "forbidden_tools": [
+          "payment.transfer",
+          "procurement.commit_order"
+        ],
+        "source_trace_id": null,
+        "group": "parallel",
+        "expected_citation": "parallel",
+        "must_abstain": false,
+        "require_quote": true,
+        "split": "development"
+      },
+      {
+        "id": "development-06",
+        "input": {
+          "question": "Which flag loads authentication keys from a file?"
+        },
+        "expected": "--api-key-file",
+        "match": "contains",
+        "required_tools": [
+          "knowledge.search"
+        ],
+        "forbidden_tools": [
+          "payment.transfer",
+          "procurement.commit_order"
+        ],
+        "source_trace_id": null,
+        "group": "keyfile",
+        "expected_citation": "keyfile",
+        "must_abstain": false,
+        "require_quote": true,
+        "split": "development"
+      },
+      {
+        "id": "development-07",
+        "input": {
+          "question": "Which flag sets a model name alias for API clients?"
+        },
+        "expected": "--alias",
+        "match": "contains",
+        "required_tools": [
+          "knowledge.search"
+        ],
+        "forbidden_tools": [
+          "payment.transfer",
+          "procurement.commit_order"
+        ],
+        "source_trace_id": null,
+        "group": "alias",
+        "expected_citation": "alias",
+        "must_abstain": false,
+        "require_quote": true,
+        "split": "development"
+      },
+      {
+        "id": "development-08",
+        "input": {
+          "question": "What type of model should be used with the embedding-only mode?"
+        },
+        "expected": "dedicated embedding",
+        "match": "contains",
+        "required_tools": [
+          "knowledge.search"
+        ],
+        "forbidden_tools": [
+          "payment.transfer",
+          "procurement.commit_order"
+        ],
+        "source_trace_id": null,
+        "group": "embedding",
+        "expected_citation": "embedding",
+        "must_abstain": false,
+        "require_quote": true,
+        "split": "development"
+      },
+      {
+        "id": "development-09",
+        "input": {
+          "question": "What status code indicates that the model is still loading?"
+        },
+        "expected": "503",
+        "match": "contains",
+        "required_tools": [
+          "knowledge.search"
+        ],
+        "forbidden_tools": [
+          "payment.transfer",
+          "procurement.commit_order"
+        ],
+        "source_trace_id": null,
+        "group": "health",
+        "expected_citation": "health",
+        "must_abstain": false,
+        "require_quote": true,
+        "split": "development"
+      },
+      {
+        "id": "development-10",
+        "input": {
+          "question": "What status is returned with fail_on_no_slot=1 when all slots are busy?"
+        },
+        "expected": "503",
+        "match": "contains",
+        "required_tools": [
+          "knowledge.search"
+        ],
+        "forbidden_tools": [
+          "payment.transfer",
+          "procurement.commit_order"
+        ],
+        "source_trace_id": null,
+        "group": "slots",
+        "expected_citation": "slots",
+        "must_abstain": false,
+        "require_quote": true,
+        "split": "development"
+      },
+      {
+        "id": "development-11",
+        "input": {
+          "question": "Which server option chooses the directory for saved slot caches?"
+        },
+        "expected": "--slot-save-path",
+        "match": "contains",
+        "required_tools": [
+          "knowledge.search"
+        ],
+        "forbidden_tools": [
+          "payment.transfer",
+          "procurement.commit_order"
+        ],
+        "source_trace_id": null,
+        "group": "cache",
+        "expected_citation": "cache",
+        "must_abstain": false,
+        "require_quote": true,
+        "split": "development"
+      }
+    ],
+    "created_at": "2026-10-13T04:03:22+00:00"
+  },
+  "jobs": [
+    {
+      "id": "26cba902-34c8-478b-8ae2-748dd44e1059",
+      "dataset_id": "d11537b3-c0a6-4b75-ae59-972152b3bce2",
+      "revision": "llm-grounded-v2",
+      "state": "queued",
+      "attempts": 0,
+      "fence": 0,
+      "completed": 0,
+      "owner": null,
+      "lease_until_ms": 0,
+      "experiment_id": null,
+      "error": null,
+      "corpus_digest": "b871b1c5be64fc94392bf38c3b07626bc66e2c8d7379d3d2a31bdefdf6c51c32",
+      "pipeline_version": "delivery-pipeline-v2"
+    }
+  ],
+  "experiments": [
+    {
+      "id": "9f9af71c-f737-4825-970d-b9580c06cbb4",
+      "name": "Delivery evaluation",
+      "dataset_id": "d11537b3-c0a6-4b75-ae59-972152b3bce2",
+      "revision": "llm-grounded-v2",
+      "evaluator_version": "evidence-v3",
+      "summary": {
+        "samples": 12,
+        "quality": 0.0,
+        "mean_cost": 0.0,
+        "p95_latency_ms": 2871.85,
+        "error_rate": 0.0
+      },
+      "created_at": "2026-10-13T04:03:52+00:00",
+      "results": [
+        {
+          "item_id": "development-00",
+          "trace_id": "dc1fd3f3-af3b-5698-a849-ac6eb3828b6b",
+          "input": {
+            "question": "What is the default sampling temperature?"
+          },
+          "expected": "0.8",
+          "output": {
+            "answer": "INSUFFICIENT_EVIDENCE",
+            "citations": [],
+            "quote": "",
+            "abstain": true,
+            "grounding": {
+              "quote_valid": false,
+              "rejected": true
+            },
+            "llm_calls": 1
+          },
+          "checks": {
+            "answer": false,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": false,
+            "verbatim_evidence": false
+          },
+          "score": 0,
+          "latency_ms": 2626,
+          "cost": 0.0,
+          "tokens": 337,
+          "group": "temperature",
+          "split": "development"
+        },
+        {
+          "item_id": "development-01",
+          "trace_id": "48ced2aa-f91d-53ac-b7b8-c6e68bd696d0",
+          "input": {
+            "question": "What is the default RNG seed?"
+          },
+          "expected": "-1",
+          "output": {
+            "answer": "INSUFFICIENT_EVIDENCE",
+            "citations": [],
+            "quote": "",
+            "abstain": true,
+            "grounding": {
+              "quote_valid": false,
+              "rejected": false
+            },
+            "llm_calls": 1
+          },
+          "checks": {
+            "answer": false,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": false,
+            "verbatim_evidence": false
+          },
+          "score": 0,
+          "latency_ms": 2503,
+          "cost": 0.0,
+          "tokens": 369,
+          "group": "seed",
+          "split": "development"
+        },
+        {
+          "item_id": "development-02",
+          "trace_id": "8eaa050b-35d2-5e51-9460-8f1756e221ac",
+          "input": {
+            "question": "What port does llama-server use by default?"
+          },
+          "expected": "9931",
+          "output": {
+            "answer": "INSUFFICIENT_EVIDENCE",
+            "citations": [],
+            "quote": "",
+            "abstain": true,
+            "grounding": {
+              "quote_valid": false,
+              "rejected": true
+            },
+            "llm_calls": 1
+          },
+          "checks": {
+            "answer": false,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": false,
+            "verbatim_evidence": false
+          },
+          "score": 0,
+          "latency_ms": 2022,
+          "cost": 0.0,
+          "tokens": 273,
+          "group": "port",
+          "split": "development"
+        },
+        {
+          "item_id": "development-03",
+          "trace_id": "afc9bfc9-3f24-5537-88e0-2949c48b5961",
+          "input": {
+            "question": "What is the default listening address?"
+          },
+          "expected": "127.0.0.1",
+          "output": {
+            "answer": "INSUFFICIENT_EVIDENCE",
+            "citations": [],
+            "quote": "",
+            "abstain": true,
+            "grounding": {
+              "quote_valid": false,
+              "rejected": true
+            },
+            "llm_calls": 1
+          },
+          "checks": {
+            "answer": false,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": false,
+            "verbatim_evidence": false
+          },
+          "score": 0,
+          "latency_ms": 2945,
+          "cost": 0.0,
+          "tokens": 461,
+          "group": "host",
+          "split": "development"
+        },
+        {
+          "item_id": "development-04",
+          "trace_id": "d44e079d-7cad-5941-b8c9-181c44e1b179",
+          "input": {
+            "question": "What is the default context-size setting?"
+          },
+          "expected": "0",
+          "output": {
+            "answer": "INSUFFICIENT_EVIDENCE",
+            "citations": [],
+            "quote": "",
+            "abstain": true,
+            "grounding": {
+              "quote_valid": false,
+              "rejected": true
+            },
+            "llm_calls": 1
+          },
+          "checks": {
+            "answer": false,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": false,
+            "verbatim_evidence": false
+          },
+          "score": 0,
+          "latency_ms": 2504,
+          "cost": 0.0,
+          "tokens": 383,
+          "group": "context",
+          "split": "development"
+        },
+        {
+          "item_id": "development-05",
+          "trace_id": "456ea3b0-ff3b-574f-8503-407fa35acafe",
+          "input": {
+            "question": "What is the default number-of-slots setting?"
+          },
+          "expected": "-1",
+          "output": {
+            "answer": "INSUFFICIENT_EVIDENCE",
+            "citations": [],
+            "quote": "",
+            "abstain": true,
+            "grounding": {
+              "quote_valid": false,
+              "rejected": true
+            },
+            "llm_calls": 1
+          },
+          "checks": {
+            "answer": false,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": false,
+            "verbatim_evidence": false
+          },
+          "score": 0,
+          "latency_ms": 2727,
+          "cost": 0.0,
+          "tokens": 370,
+          "group": "parallel",
+          "split": "development"
+        },
+        {
+          "item_id": "development-06",
+          "trace_id": "fd9dfee1-9d2d-5641-a617-bba1cf192294",
+          "input": {
+            "question": "Which flag loads authentication keys from a file?"
+          },
+          "expected": "--api-key-file",
+          "output": {
+            "answer": "INSUFFICIENT_EVIDENCE",
+            "citations": [],
+            "quote": "",
+            "abstain": true,
+            "grounding": {
+              "quote_valid": false,
+              "rejected": true
+            },
+            "llm_calls": 1
+          },
+          "checks": {
+            "answer": false,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": false,
+            "verbatim_evidence": false
+          },
+          "score": 0,
+          "latency_ms": 2305,
+          "cost": 0.0,
+          "tokens": 387,
+          "group": "keyfile",
+          "split": "development"
+        },
+        {
+          "item_id": "development-07",
+          "trace_id": "156a5b41-08da-5b9b-98bb-c2d209cd9cd5",
+          "input": {
+            "question": "Which flag sets a model name alias for API clients?"
+          },
+          "expected": "--alias",
+          "output": {
+            "answer": "INSUFFICIENT_EVIDENCE",
+            "citations": [],
+            "quote": "",
+            "abstain": true,
+            "grounding": {
+              "quote_valid": false,
+              "rejected": true
+            },
+            "llm_calls": 1
+          },
+          "checks": {
+            "answer": false,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": false,
+            "verbatim_evidence": false
+          },
+          "score": 0,
+          "latency_ms": 2105,
+          "cost": 0.0,
+          "tokens": 287,
+          "group": "alias",
+          "split": "development"
+        },
+        {
+          "item_id": "development-08",
+          "trace_id": "b332b909-474a-5d5d-8989-a71211955e90",
+          "input": {
+            "question": "What type of model should be used with the embedding-only mode?"
+          },
+          "expected": "dedicated embedding",
+          "output": {
+            "answer": "embedding",
+            "citations": [
+              "embedding"
+            ],
+            "quote": "| `--embedding, --embeddings` | restrict to only support embedding use case; use only with dedicated embedding models (default: disabled)",
+            "abstain": false,
+            "grounding": {
+              "quote_valid": true,
+              "rejected": false
+            },
+            "llm_calls": 1
+          },
+          "checks": {
+            "answer": false,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": true,
+            "verbatim_evidence": true
+          },
+          "score": 0,
+          "latency_ms": 2353,
+          "cost": 0.0,
+          "tokens": 390,
+          "group": "embedding",
+          "split": "development"
+        },
+        {
+          "item_id": "development-09",
+          "trace_id": "34ae08d1-77e1-54a8-add3-ec1749f23542",
+          "input": {
+            "question": "What status code indicates that the model is still loading?"
+          },
+          "expected": "503",
+          "output": {
+            "answer": "INSUFFICIENT_EVIDENCE",
+            "citations": [],
+            "quote": "",
+            "abstain": true,
+            "grounding": {
+              "quote_valid": false,
+              "rejected": true
+            },
+            "llm_calls": 1
+          },
+          "checks": {
+            "answer": false,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": false,
+            "verbatim_evidence": false
+          },
+          "score": 0,
+          "latency_ms": 2487,
+          "cost": 0.0,
+          "tokens": 442,
+          "group": "health",
+          "split": "development"
+        },
+        {
+          "item_id": "development-10",
+          "trace_id": "29905d21-d6e4-5678-b0b3-46377971fc82",
+          "input": {
+            "question": "What status is returned with fail_on_no_slot=1 when all slots are busy?"
+          },
+          "expected": "503",
+          "output": {
+            "answer": "INSUFFICIENT_EVIDENCE",
+            "citations": [],
+            "quote": "",
+            "abstain": true,
+            "grounding": {
+              "quote_valid": false,
+              "rejected": true
+            },
+            "llm_calls": 1
+          },
+          "checks": {
+            "answer": false,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": false,
+            "verbatim_evidence": false
+          },
+          "score": 0,
+          "latency_ms": 2812,
+          "cost": 0.0,
+          "tokens": 471,
+          "group": "slots",
+          "split": "development"
+        },
+        {
+          "item_id": "development-11",
+          "trace_id": "85b4b024-c459-54d5-ae23-10b1a9b0cd6e",
+          "input": {
+            "question": "Which server option chooses the directory for saved slot caches?"
+          },
+          "expected": "--slot-save-path",
+          "output": {
+            "answer": "INSUFFICIENT_EVIDENCE",
+            "citations": [],
+            "quote": "",
+            "abstain": true,
+            "grounding": {
+              "quote_valid": false,
+              "rejected": false
+            },
+            "llm_calls": 1
+          },
+          "checks": {
+            "answer": false,
+            "required_tools": true,
+            "forbidden_tools": true,
+            "execution": true,
+            "citation": false,
+            "verbatim_evidence": false
+          },
+          "score": 0,
+          "latency_ms": 2414,
+          "cost": 0.0,
+          "tokens": 378,
+          "group": "cache",
+          "split": "development"
+        }
+      ]
+    }
+  ],
+  "customer_claims": false,
+  "human_review": "pending_real_reviewer"
+}

@@ -5,7 +5,7 @@ import math
 import random
 import unicodedata
 
-EVALUATOR_VERSION = "deterministic-v2"
+EVALUATOR_VERSION = "evidence-v3"
 
 
 def content_hash(value):
@@ -41,6 +41,10 @@ def score(item, trace, spans):
     }
     if item.get("expected_citation"):
         checks["citation"] = isinstance(output, dict) and item["expected_citation"] in output.get("citations", [])
+    if item.get("must_abstain"):
+        checks["abstention"] = isinstance(output, dict) and output.get("abstain") is True and not output.get("citations")
+    if item.get("require_quote") and not item.get("must_abstain"):
+        checks["verbatim_evidence"] = isinstance(output, dict) and output.get("grounding", {}).get("quote_valid") is True
     return {
         "item_id": item["id"], "trace_id": trace.id,
         "input": item["input"], "expected": expected, "output": output,
@@ -48,6 +52,8 @@ def score(item, trace, spans):
         "latency_ms": trace.latency_ms, "cost": float(trace.total_cost),
         "tokens": trace.total_tokens,
         "group": item.get("group") or item["id"],
+        "split": item.get("split", "development"),
+        "cost_known": not (trace.meta or {}).get("cost_basis") == "provider_cost_not_reconciled" if hasattr(trace, "meta") else True,
     }
 
 
@@ -84,13 +90,17 @@ def compare(baseline, candidate, policy):
         {"name": "sample_size", "actual": len(pairs), "limit": policy["min_samples"], "passed": len(pairs) >= policy["min_samples"]},
         {"name": "quality_floor", "actual": c["quality"], "limit": policy["min_quality"], "passed": c["quality"] >= policy["min_quality"]},
         {"name": "paired_quality_lower_bound", "actual": lower, "limit": -policy["max_quality_drop"], "passed": lower >= -policy["max_quality_drop"]},
-        {"name": "mean_cost", "actual": c["mean_cost"], "limit": policy["max_mean_cost"], "passed": c["mean_cost"] <= policy["max_mean_cost"]},
+        {"name": "mean_cost", "actual": c["mean_cost"], "limit": policy["max_mean_cost"],
+         "passed": c["mean_cost"] <= policy["max_mean_cost"] and all(r.get("cost_known", True) for r in candidate.results)},
         {"name": "p95_latency_ms", "actual": c["p95_latency_ms"], "limit": policy["max_p95_latency_ms"], "passed": c["p95_latency_ms"] <= policy["max_p95_latency_ms"]},
         {"name": "error_rate", "actual": c["error_rate"], "limit": policy["max_error_rate"], "passed": c["error_rate"] <= policy["max_error_rate"]},
         {"name": "independent_groups", "actual": len(groups), "limit": policy.get("min_groups", 2), "passed": len(groups) >= policy.get("min_groups", 2)},
         {"name": "worst_group_quality_delta", "actual": min(sum(v)/len(v) for v in groups.values()), "limit": -policy.get("max_group_quality_drop", .2),
          "passed": min(sum(v)/len(v) for v in groups.values()) >= -policy.get("max_group_quality_drop", .2)},
     ]
+    if policy.get("require_holdout"):
+        checks.append({"name": "holdout_only", "actual": int(all(r.get("split") == "holdout" for r in candidate.results + baseline.results)),
+                       "limit": 1, "passed": all(r.get("split") == "holdout" for r in candidate.results + baseline.results)})
     return {"decision": "pass" if all(c["passed"] for c in checks) else "block", "checks": checks,
             "gate_version": "cluster-bootstrap-v2",
             "baseline": b, "candidate": c, "quality_delta": c["quality"] - b["quality"],

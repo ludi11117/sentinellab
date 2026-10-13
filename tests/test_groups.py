@@ -46,6 +46,19 @@ class GroupTest(unittest.TestCase):
         self.assertFalse(scored["checks"]["citation"])
         self.assertEqual(scored["score"], 0)
 
+    def test_holdout_policy_rejects_development_data(self):
+        baseline = experiment([{**result(str(i), 1, str(i)), "split": "development"} for i in range(12)])
+        candidate = experiment([{**result(str(i), 1, str(i)), "split": "development"} for i in range(12)])
+        report = compare(baseline, candidate, GatePolicy(require_holdout=True).model_dump())
+        self.assertEqual(report["decision"], "block")
+        self.assertFalse(next(c for c in report["checks"] if c["name"] == "holdout_only")["passed"])
+
+    def test_unknown_provider_cost_cannot_pass_cost_gate(self):
+        baseline = experiment([result(str(i), 1, str(i)) for i in range(12)])
+        candidate = experiment([{**result(str(i), 1, str(i)), "cost_known": False} for i in range(12)])
+        report = compare(baseline, candidate, GatePolicy().model_dump())
+        self.assertFalse(next(c for c in report["checks"] if c["name"] == "mean_cost")["passed"])
+
 
 if __name__ == "__main__":
     unittest.main()

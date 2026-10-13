@@ -1,0 +1,14 @@
+{
+  "runtime_tag": "b11577",
+  "runtime_sha256": "1d9a92d7bd92d41ace1ac21fb3ac2241a8175b932b9229b0d54e8bf625df8a81",
+  "backend": "vulkan",
+  "model": "Qwen3-4B-Q4_K_M",
+  "model_revision": "bc640142c66e1fdd12af0bd68f40445458f3869b",
+  "model_sha256": "7485fe6f11af29433bc51cab58009521f205840f5b4ae3a32fa7f92e8534fdf5",
+  "model_path": "D:\\CodexWork\\cache\\sentinellab-model\\Qwen3-4B-Q4_K_M.gguf",
+  "server_path": "D:\\CodexWork\\cache\\sentinellab-model\\b11577-vulkan\\llama-server.exe",
+  "sources": [
+    "https://github.com/ggml-org/llama.cpp",
+    "https://huggingface.co/Qwen/Qwen3-4B-GGUF"
+  ]
+}

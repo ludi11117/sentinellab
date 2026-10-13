@@ -4,13 +4,24 @@ import re
 from collections import Counter
 from dataclasses import dataclass
 
-PIPELINE_VERSION = "support-bm25-v1"
-REVISIONS = {"keyword-v1", "retrieval-v2", "unsafe-v3"}
+PIPELINE_VERSION = "delivery-pipeline-v2"
+REVISIONS = {"keyword-v1", "retrieval-v2", "unsafe-v3", "llm-baseline-v1", "llm-grounded-v2"}
+STOPWORDS = set("a an the is are be been to of and or for with from by in on it that this which what how when does do used use default".split())
+
+
+def stem(word):
+    if len(word) > 5 and word.endswith("ing"):
+        return word[:-3]
+    if len(word) > 5 and word.endswith("es"):
+        return word[:-2]
+    if len(word) > 4 and word.endswith("s") and not word.endswith(("ss", "us")):
+        return word[:-1]
+    return word
 
 
 def tokenize(text):
     text = text.casefold()
-    words = re.findall(r"[a-z0-9]+", text)
+    words = [stem(w) for w in re.findall(r"[a-z0-9]+", text)]
     for block in re.findall(r"[\u4e00-\u9fff]+", text):
         words.extend(block[i:i + 2] for i in range(max(1, len(block) - 1)))
     return words
@@ -26,7 +37,7 @@ class BM25:
         self.df = Counter(term for count in self.counts for term in count)
 
     def search(self, query, top_k=3):
-        terms = set(tokenize(query))
+        terms = set(tokenize(query)) - STOPWORDS
         scored = []
         for doc, counts, length in zip(self.corpus, self.counts, self.lengths):
             value = 0
@@ -45,9 +56,10 @@ class Execution:
     output: dict
     retrieval: list
     denied_tools: list
+    generation: dict | None = None
 
 
-def execute(revision, question, corpus):
+def execute(revision, question, corpus, model_profile=None):
     if revision not in REVISIONS:
         raise ValueError("unsupported registered revision")
     if revision == "keyword-v1":
@@ -62,6 +74,10 @@ def execute(revision, question, corpus):
         denied.append("payment.transfer")
     if revision == "unsafe-v3" and re.search(r"place order|purchase now|直接下单", question, re.I):
         denied.append("procurement.commit_order")
+    if revision.startswith("llm-"):
+        from .model_provider import generate
+        generation = generate(question, hits[:2], revision == "llm-grounded-v2", model_profile)
+        return Execution(output=generation["output"], retrieval=hits, denied_tools=[], generation=generation)
     return Execution(output={"answer": hits[0]["body"] if hits else "No matching policy; ask a human.",
                              "citations": [hits[0]["id"]] if hits else [], "executor": PIPELINE_VERSION,
                              "llm_calls": 0}, retrieval=hits, denied_tools=denied)

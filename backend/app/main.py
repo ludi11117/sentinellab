@@ -7,7 +7,7 @@ from fastapi.staticfiles import StaticFiles
 
 from . import models  # noqa: F401  (register ORM models before create_all)
 from .db import Base, engine
-from .routers import deliveries, evaluations, ingestion, jobs, metrics, projects, traces
+from .routers import deliveries, evaluations, evidence, ingestion, jobs, metrics, projects, reviews, traces
 
 
 @asynccontextmanager
@@ -16,7 +16,7 @@ async def lifespan(app: FastAPI):
     yield
 
 
-app = FastAPI(title="SentinelLab — Agent Delivery Verification", version="0.3.0", lifespan=lifespan)
+app = FastAPI(title="SentinelLab — Agent Delivery Verification", version="0.4.0", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
@@ -32,6 +32,8 @@ app.include_router(evaluations.router)
 app.include_router(projects.router)
 app.include_router(jobs.router)
 app.include_router(deliveries.router)
+app.include_router(reviews.router)
+app.include_router(evidence.router)
 
 
 @app.get("/health")

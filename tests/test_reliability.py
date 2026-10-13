@@ -182,6 +182,17 @@ class IsolationTest(unittest.TestCase):
         self.assertEqual(self.api.get("/api/public/traces").status_code, 401)
         self.assertEqual(self.api.get("/api/admin/projects", headers=writer).status_code, 401)
 
+    def test_reviewer_only_sees_blinded_routes(self):
+        project, writer = self.project("A")
+        response = self.api.post(f"/api/admin/projects/{project['id']}/keys", json={"role": "reviewer"}, headers=self.admin)
+        self.assertEqual(response.status_code, 201)
+        reviewer = {"Authorization": "Bearer " + response.json()["token"]}
+        self.assertEqual(self.api.get("/api/public/reviews", headers=reviewer).status_code, 200)
+        for path in ["traces", "experiments", "evidence", "datasets", "model-status"]:
+            self.assertEqual(self.api.get("/api/public/" + path, headers=reviewer).status_code, 403)
+        self.assertEqual(self.api.post("/api/public/reviews", headers=reviewer, json={}).status_code, 403)
+        self.assertEqual(self.api.get("/api/public/reviews/" + str(uuid.uuid4()) + "/summary", headers=reviewer).status_code, 403)
+
 
 class JobApiTest(unittest.TestCase):
     setUp = existing.SystemTest.setUp

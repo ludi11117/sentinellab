@@ -1,5 +1,6 @@
 import hashlib
 import hmac
+import re
 from dataclasses import dataclass
 
 from fastapi import HTTPException, Request
@@ -39,7 +40,11 @@ def principal(request: Request):
         identity = Principal("local", "writer")
     else:
         raise HTTPException(401, "project key required")
-    if request.method not in ("GET", "HEAD", "OPTIONS") and identity.role != "writer":
+    path = request.url.path
+    review_path = bool(re.fullmatch(r"/api/public/reviews(?:/[a-f0-9-]{36}(?:/tasks|/votes)?)?", path))
+    if identity.role == "reviewer" and (not review_path or (request.method not in ("GET", "HEAD", "OPTIONS") and not path.endswith("/votes"))):
+        raise HTTPException(403, "reviewer key is restricted to blinded review tasks and votes")
+    if request.method not in ("GET", "HEAD", "OPTIONS") and identity.role != "writer" and not (identity.role == "reviewer" and path.endswith("/votes")):
         raise HTTPException(403, "reader key cannot modify project data")
     request.state.principal = identity
     return identity

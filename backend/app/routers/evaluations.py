@@ -28,6 +28,9 @@ class DatasetItem(StrictModel):
     source_trace_id: str | None = None
     group: str | None = Field(None, min_length=1, max_length=64)
     expected_citation: str | None = Field(None, min_length=1, max_length=128)
+    must_abstain: bool = False
+    require_quote: bool = False
+    split: Literal["development", "holdout"] = "development"
 
     @model_validator(mode="after")
     def consistent(self):
@@ -64,6 +67,7 @@ class GatePolicy(StrictModel):
     max_error_rate: float = Field(0, ge=0, le=1)
     min_groups: int = Field(2, ge=1, le=1000)
     max_group_quality_drop: float = Field(.2, ge=0, le=1)
+    require_holdout: bool = False
 
 
 class GateRequest(StrictModel):
